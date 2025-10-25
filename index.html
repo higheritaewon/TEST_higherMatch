@@ -4,7 +4,6 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
 <title>HIGHER MATCH</title>
-<!-- ✅ Google Fonts: Do Hyeon -->
 <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
 <style>
   :root{
@@ -42,7 +41,6 @@
   }
   .subtitle{color:var(--muted); font-size:13px; text-align:center; margin-top:-6px; margin-bottom:14px}
 
-  /* 로고 */
   .logo-wrap{display:flex;flex-direction:column;align-items:center;gap:10px;margin:8px 0 16px}
   .logo{
     width:240px;height:auto;object-fit:contain;display:block;border-radius:12px;border:1px dashed rgba(255,255,255,.15);background:#0b1532;
@@ -95,12 +93,10 @@
   }
   .hidden{display:none !important}
 
-  /* “다른사람 구경하기” 행 레이아웃: 내용 2/3, 버튼 1/3 */
   .li-content{ flex: 2; min-width:0; }
   .li-actions{ flex: 1; display:flex; justify-content:flex-end; align-items:stretch; }
   .li-actions .btn-like{ width:100%; }
 
-  /* modal */
   .modal-backdrop{
     position:fixed; inset:0; background:rgba(0,0,0,.55); display:none; align-items:center; justify-content:center; z-index:50
   }
@@ -108,7 +104,6 @@
   .modal h3{margin:0 0 8px}
   .modal .actions{display:flex; gap:10px; margin-top:12px}
 
-  /* 로딩 오버레이 */
   .loading-backdrop{
     position:fixed; inset:0; background:rgba(0,0,0,.35);
     display:none; align-items:center; justify-content:center; z-index:60;
@@ -124,8 +119,21 @@
   }
   @keyframes spin{to{transform:rotate(360deg)}}
 
-  /* 검색 바 */
-  .search-row{display:flex; gap:8px; margin:6px 0 10px}
+  /* ===== BIG LIKE COUNTER ===== */
+  .counter-banner{
+    margin:4px 0 10px;
+    padding:12px 14px;
+    border-radius:14px;
+    background:#09163a;
+    border:1px solid rgba(255,255,255,.08);
+    text-align:center;
+  }
+  .counter-banner .num{
+    font-size:24px; font-weight:800; letter-spacing:.5px;
+    font-family:'Do Hyeon', sans-serif;
+  }
+  .counter-banner .cap{display:block; margin-top:4px; font-size:12px; color:var(--muted)}
+  .counter-banner.exhausted{background:#2a0e12; border-color:#3b1318}
 </style>
 </head>
 <body>
@@ -155,7 +163,6 @@
     <p class="subtitle small"><br/>이벤트용 익명 서비스입니다.<br/>BETA SERVICE @higher_itaewon<br/></p>
   </section>
 
-  <!-- (디자인 변경으로 예전 상단바는 사용하지 않음) -->
   <div id="topbar-common" class="hidden"></div>
 
   <!-- ===== [PAGE] 메뉴 ===== -->
@@ -215,8 +222,13 @@
     <img class="logo-mini" id="logo-mini-browse" alt="로고" />
     <h2 class="page-title">다른사람 구경하기</h2>
 
-    <!-- ✅ 남은 LIKE 표기 & 검색바 -->
-    <p id="like-remaining-browse" class="center small muted" style="margin:6px 0 6px;"></p>
+    <!-- BIG counter -->
+    <div id="like-counter-browse" class="counter-banner">
+      <span class="num" id="like-remaining-browse-num">남은 LIKE: 0 / 0</span>
+      <span class="cap">LIKE는 이벤트당 제한됩니다</span>
+    </div>
+
+    <!-- 검색바 -->
     <div class="search-row">
       <input id="browse-search-input" inputmode="numeric" pattern="[0-9]*" placeholder="번호로 검색 (예: 12)" />
       <button id="browse-search-btn" class="btn">검색</button>
@@ -238,8 +250,11 @@
     <img class="logo-mini" id="logo-mini-like" alt="로고" />
     <h2 class="page-title">👍LIKE 보내기</h2>
 
-    <!-- ✅ 남은 LIKE 표기 -->
-    <p id="like-remaining-like" class="center small muted" style="margin:4px 0 10px;"></p>
+    <!-- BIG counter -->
+    <div id="like-counter-like" class="counter-banner">
+      <span class="num" id="like-remaining-like-num">남은 LIKE: 0 / 0</span>
+      <span class="cap">남은 횟수가 0이면 LIKE를 보낼 수 없습니다</span>
+    </div>
 
     <div class="row">
       <input id="from-like" disabled />
@@ -298,14 +313,13 @@
     </div>
     <p class="small muted">현재 이벤트: <span class="badge" id="current-event"></span></p>
 
-    <!-- ✅ 관리자 메뉴: 탭 비슷한 버튼 -->
     <div class="row" style="margin-top:10px;">
       <button id="admin-tab-search" class="btn">사용자 검색/관리</button>
       <button id="admin-tab-matches" class="btn">매치/만남 목록</button>
       <button id="admin-tab-draw" class="btn">랜덤 번호 뽑기</button>
     </div>
 
-    <!-- ✅ 사용자 검색/관리 -->
+    <!-- 사용자 검색/관리 -->
     <div id="admin-panel-search" style="margin-top:12px;">
       <h3>사용자 검색/관리</h3>
       <div class="row">
@@ -325,9 +339,14 @@
       <div id="admin-sent-list" class="list"></div>
       <h4 style="margin-top:12px">받은 LIKE 목록</h4>
       <div id="admin-recv-list" class="list"></div>
+
+      <h4 style="margin-top:12px">데이터 제거(해당 사용자 전용)</h4>
+      <div class="row">
+        <button id="admin-wipe-user" class="btn-danger">이 사용자 데이터 전부 삭제</button>
+      </div>
     </div>
 
-    <!-- ✅ 매치/만남 목록 -->
+    <!-- 매치/만남 목록 -->
     <div id="admin-panel-matches" class="hidden" style="margin-top:12px;">
       <h3>매치/만남 목록</h3>
       <h4 style="margin-top:8px">매치 목록(쌍방 LIKE)</h4>
@@ -348,7 +367,7 @@
       <button id="admin-reset" class="btn-danger">모든 계정/데이터 완전 삭제</button>
     </div>
 
-    <!-- ✅ 랜덤 번호 뽑기 -->
+    <!-- 랜덤 번호 뽑기 -->
     <div id="admin-panel-draw" class="hidden" style="margin-top:12px;">
       <h3>랜덤 번호 뽑기</h3>
       <p class="small muted">현재 등록된 번호들 중에서 중복 없이 각각의 풀에서 추첨됩니다.</p>
@@ -394,21 +413,18 @@
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
   import { getDatabase, ref, get, set, update, onValue, remove, runTransaction } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-database.js";
-  import {
-    getAuth, signInAnonymously, onAuthStateChanged,
-    setPersistence, inMemoryPersistence
-  } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js";
+  import { getAuth, signInAnonymously, onAuthStateChanged, setPersistence, inMemoryPersistence } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js";
 
   // ===================== 환경 설정 =====================
   const firebaseConfig = {
-  apiKey: "AIzaSyCZK8qb__6LPBr-HAdrUsKbUXpeU1jGuJE",
-  authDomain: "test-highermatch.firebaseapp.com",
-  databaseURL: "https://test-highermatch-default-rtdb.asia-southeast1.firebasedatabase.app",
-  projectId: "test-highermatch",
-  storageBucket: "test-highermatch.firebasestorage.app",
-  messagingSenderId: "404607090991",
-  appId: "1:404607090991:web:7909bd4441354e7285e1da",
-  measurementId: "G-PFPGBCLJC9"
+    apiKey: "AIzaSyCZK8qb__6LPBr-HAdrUsKbUXpeU1jGuJE",
+    authDomain: "test-highermatch.firebaseapp.com",
+    databaseURL: "https://test-highermatch-default-rtdb.asia-southeast1.firebasedatabase.app",
+    projectId: "test-highermatch",
+    storageBucket: "test-highermatch.firebasestorage.app",
+    messagingSenderId: "404607090991",
+    appId: "1:404607090991:web:7909bd4441354e7285e1da",
+    measurementId: "G-PFPGBCLJC9"
   };
 
   let EVENT_ID = localStorage.getItem("hm_event_id") || "defaultEvent";
@@ -423,7 +439,9 @@
   let currentUid = null;
   let currentPin = null;
   let adminLoggedIn = false;
-  let isConnected = null; // Realtime DB 연결 상태
+  let isConnected = null;
+  let likeRemain = 0;
+  let likeLimit = 0;
 
   // ===================== DOM 헬퍼 =====================
   const $ = s => document.querySelector(s);
@@ -456,9 +474,7 @@
 
   const logoMain = $("#logo-main");
   function setAllMiniLogos(){
-    document.querySelectorAll(".logo-mini").forEach(img=>{
-      img.src = logoMain.src;
-    });
+    document.querySelectorAll(".logo-mini").forEach(img=>{ img.src = logoMain.src; });
   }
   setAllMiniLogos();
 
@@ -514,12 +530,8 @@
     const base = currentUid ? `${currentUid}번 님이 로그인 중입니다` : "";
     const textTop = base + suffix;
 
-    ["#login-status-menu",
-     "#login-status-profile-top",
-     "#login-status-browse-top",
-     "#login-status-like-top",
-     "#login-status-matches-top"
-    ].forEach(sel=>{ const el=$(sel); if(el) el.textContent=textTop; });
+    ["#login-status-menu","#login-status-profile-top","#login-status-browse-top","#login-status-like-top","#login-status-matches-top"]
+      .forEach(sel=>{ const el=$(sel); if(el) el.textContent=textTop; });
 
     const fromLike = $("#from-like");
     if(fromLike){ fromLike.value = currentUid ? `내 번호: ${currentUid}` : ""; }
@@ -529,23 +541,44 @@
   const r = (p)=> ref(db, `events/${EVENT_ID}/${p}`);
   async function getUser(uid){ const snap = await get(r(`users/${uid}`)); return snap.exists()? snap.val(): null; }
   async function userExists(uid){ return !!(await getUser(uid)); }
-
-  // LIKE 카운트/제한 표시
-  async function refreshLikeCounters(){
-    if(!currentUid) return;
-    const u = await getUser(currentUid);
-    let likeLimit = (u && typeof u.likeLimit==="number") ? u.likeLimit : 5;
-    let sentCount = (u && typeof u.likeSentCount==="number") ? u.likeSentCount : await countLikesSent(currentUid);
-    const remain = Math.max(0, likeLimit - sentCount);
-    const t1 = $("#like-remaining-like");
-    const t2 = $("#like-remaining-browse");
-    if(t1) t1.textContent = `남은 LIKE: ${remain} / ${likeLimit}`;
-    if(t2) t2.textContent = `남은 LIKE: ${remain} / ${likeLimit}`;
-  }
   async function countLikesSent(uid){
     const snap = await get(r(`likes/${uid}`));
     if(!snap.exists()) return 0;
     return Object.keys(snap.val()).length;
+  }
+
+  // ===== LIKE 카운터/배너/UI =====
+  function setLikeUI(remain, limit){
+    likeRemain = remain; likeLimit = limit;
+    // 숫자 업데이트
+    const n1 = $("#like-remaining-like-num");
+    const n2 = $("#like-remaining-browse-num");
+    if(n1) n1.textContent = `남은 LIKE: ${remain} / ${limit}`;
+    if(n2) n2.textContent = `남은 LIKE: ${remain} / ${limit}`;
+
+    // 배너 스타일
+    const b1 = $("#like-counter-like");
+    const b2 = $("#like-counter-browse");
+    const exhausted = (remain<=0);
+    [b1,b2].forEach(b=>{ if(!b) return; b.classList.toggle("exhausted", exhausted); });
+
+    // 보내기 버튼/목록 버튼 제어
+    const sendBtn = $("#send-like-btn");
+    if(sendBtn){ sendBtn.disabled = exhausted; sendBtn.title = exhausted ? "LIKE를 모두 사용하였습니다." : ""; }
+
+    // 목록의 LIKE 버튼들
+    document.querySelectorAll("[data-like]").forEach(btn=>{
+      btn.disabled = exhausted;
+      btn.title = exhausted ? "남은 LIKE가 없습니다" : "";
+    });
+  }
+  async function refreshLikeCounters(){
+    if(!currentUid) return;
+    const u = await getUser(currentUid);
+    const limit = (u && typeof u.likeLimit==="number") ? u.likeLimit : 5;
+    const sentCount = (u && typeof u.likeSentCount==="number") ? u.likeSentCount : await countLikesSent(currentUid);
+    const remain = Math.max(0, limit - sentCount);
+    setLikeUI(remain, limit);
   }
 
   // ===================== Auth 초기화 =====================
@@ -553,9 +586,7 @@
     try{
       await setPersistence(auth, inMemoryPersistence);
       await signInAnonymously(auth);
-    }catch(e){
-      console.error("Auth init error:", e);
-    }
+    }catch(e){ console.error("Auth init error:", e); }
     return new Promise((resolve)=>{
       if(auth.currentUser) return resolve(auth.currentUser);
       const unsub = onAuthStateChanged(auth, (u)=>{unsub(); resolve(u);});
@@ -563,7 +594,7 @@
   }
   await initAuth();
 
-  // ===================== .info/connected 실시간 모니터링 =====================
+  // ===================== .info/connected =====================
   onValue(ref(db, ".info/connected"), (snap)=>{
     isConnected = (snap.val() === true);
     updateConnectionLabels();
@@ -605,16 +636,15 @@
         if(user.pin !== pin){ return alertModal("비밀번호가 일치하지 않습니다. 다시 시도해 주시기 바랍니다."); }
         currentUid = uid; currentPin = pin;
 
-        // 누락된 필드 기본값 보정
+        // 누락 필드 보정
         const patch = {};
         if(typeof user.likeLimit!=="number") patch.likeLimit = 5;
-        if(typeof user.likeSentCount!=="number"){
-          patch.likeSentCount = await countLikesSent(currentUid);
-        }
+        if(typeof user.likeSentCount!=="number"){ patch.likeSentCount = await countLikesSent(currentUid); }
         if(Object.keys(patch).length) await update(r(`users/${currentUid}`), patch);
 
         attachRealtimeListeners();
         await refreshLikeCounters();
+        await checkUnseenLikes();   // ✅ 로그인 직후 미확인 LIKE 알림 띄우기
         go("menu");
       }catch(err){
         console.error(err);
@@ -633,12 +663,10 @@
     const el = $(sel); if(el) el.onclick = doLogout;
   });
 
-  // 각 페이지의 “메뉴” 버튼 → 메뉴로 이동
+  // 메뉴 이동
   ["#to-menu1","#to-menu2","#to-menu3","#to-menu4"].forEach(sel=>{
     const el = $(sel); if(el) el.onclick = ()=> go("menu");
   });
-
-  // 메뉴 이동
   $("#btn-profile").onclick = ()=>{ $("#me-uid-profile").textContent = currentUid; loadProfile(); go("profile"); };
   $("#btn-browse").onclick = async ()=>{ await loadBrowse(); await refreshLikeCounters(); go("browse"); };
   $("#btn-like").onclick   = async ()=>{ $("#from-like").value=`내 번호: ${currentUid}`; $("#to-like").value=""; await refreshLikeCounters(); go("like"); };
@@ -690,8 +718,12 @@
       `;
       wrap.appendChild(item);
     });
+
+    // 버튼 핸들러 + 남은 횟수 0이면 즉시 비활성화
     wrap.querySelectorAll("[data-like]").forEach(btn=>{
       btn.onclick = ()=> sendLike(btn.getAttribute("data-like"));
+      btn.disabled = (likeRemain<=0);
+      btn.title = (likeRemain<=0) ? "남은 LIKE가 없습니다" : "";
     });
   }
   // 검색 UI
@@ -702,8 +734,9 @@
   };
   $("#browse-search-clear").onclick = ()=>{ $("#browse-search-input").value=""; loadBrowse(null); };
 
-  // ===== LIKE 보내기 (횟수 제한 포함) =====
+  // ===== LIKE 보내기 =====
   $("#send-like-btn").onclick = async ()=>{
+    if(likeRemain<=0){ return alertModal("LIKE를 모두 사용하였습니다."); }
     const toId = $("#to-like").value.trim();
     if(!/^\d+$/.test(toId)) return alertModal("상대 고유번호를 숫자로 입력하세요.");
     await withLoading(async ()=>{ await sendLike(toId); });
@@ -711,6 +744,7 @@
 
   async function sendLike(toId){
     if(!currentUid) return;
+    if(likeRemain<=0) return alertModal("LIKE를 모두 사용하였습니다.");
     if(toId===currentUid) return alertModal("본인에게는 보낼 수 없습니다.");
     const exists = await userExists(toId);
     if(!exists) return alertModal("해당 번호가 없습니다. 다시 시도해 주시기 바랍니다.");
@@ -727,50 +761,54 @@
       if(!u) return u;
       if(typeof u.likeLimit!=="number") u.likeLimit = 5;
       if(typeof u.likeSentCount!=="number") u.likeSentCount = 0;
-      if(u.likeSentCount >= u.likeLimit){
-        // 사용 완료
-        return u; // 그대로 반환
-      }
+      if(u.likeSentCount >= u.likeLimit){ return u; } // 더 이상 불가
       u.likeSentCount += 1;
       return u;
     });
     const val = ok && ok.snapshot && ok.snapshot.val();
     if(!val) return alertModal("오류가 발생했습니다. 다시 시도해 주세요.");
     if(val.likeSentCount > val.likeLimit){
-      // 안전망
       await update(userRef, { likeSentCount: val.likeLimit });
       return alertModal("LIKE를 모두 사용하였습니다.");
     }
-    if(val.likeSentCount === val.likeLimit){
-      // 이번에 마지막 1회를 쓴 경우도 전송은 허용됨
-    }
-    if(val.likeSentCount > val.likeLimit - 1){
-      // 방금 증가 후 제한을 초과한 경우(동시성) 방지
-      const remain = Math.max(0, val.likeLimit - val.likeSentCount);
-      if(remain<0){
-        await update(userRef, { likeSentCount: val.likeLimit });
-        return alertModal("LIKE를 모두 사용하였습니다.");
-      }
+    if(val.likeSentCount >= val.likeLimit){
+      // 이번 전송이 마지막 1회였을 수 있음 → 남은 횟수 갱신 후 UI에서 잠금
     }
 
     // 실제 LIKE 저장
     await set(r(`likes/${currentUid}/${toId}`), true);
 
-    // ✅ 수신 인덱스 기록 (실시간 수신 알림용)
-    await set(r(`likesReceived/${toId}/${currentUid}`), { ok:true, updatedAt: Date.now() });
+    // 수신 인덱스(미확인)
+    await set(r(`likesReceived/${toId}/${currentUid}`), { ok:true, updatedAt: Date.now(), seen:false });
 
-    // 매치 여부 확인
+    // 매치 여부
     const reciprocal = await get(r(`likes/${toId}/${currentUid}`));
     if(reciprocal.exists()){
       const payload = {status:"matched", updatedAt: Date.now()};
       await update(r(`matches/${currentUid}/${toId}`), payload);
       await update(r(`matches/${toId}/${currentUid}`), payload);
-      alertModal(`${toId}번 사용자와 MATCH가 되었습니다! 매치 현황을 확인해 주시기 바랍니다.`);
+      await alertModal(`${toId}번 사용자와 MATCH가 되었습니다! 매치 현황을 확인해 주시기 바랍니다.`);
     }else{
       await alertModal("LIKE가 전송되었습니다.");
     }
 
-    await refreshLikeCounters();
+    await refreshLikeCounters(); // UI 반영(0 되면 버튼 자동 잠금)
+  }
+
+  // ===== LIKE 수신 미확인 알림 처리 =====
+  async function checkUnseenLikes(){
+    if(!currentUid) return;
+    const snap = await get(r(`likesReceived/${currentUid}`));
+    if(!snap.exists()) return;
+    const recvs = snap.val();
+    // seen:false 항목 모두 팝업 후 seen:true로 변경
+    for(const from of Object.keys(recvs)){
+      const v = recvs[from];
+      if(v && v.ok && v.seen===false){
+        await alertModal("누군가에게 LIKE를 받았습니다.","LIKE알림");
+        await update(r(`likesReceived/${currentUid}/${from}`), { seen:true });
+      }
+    }
   }
 
   // ===== 나의 MATCH 현황 (+ 보류 처리) =====
@@ -778,7 +816,7 @@
     const wrap = $("#matches-list");
     wrap.innerHTML = "";
 
-    // 1) 매치 목록
+    // 매치 목록
     const snap = await get(r(`matches/${currentUid}`));
     if(snap.exists()){
       const list = snap.val();
@@ -832,7 +870,7 @@
       });
     }
 
-    // 2) 내가 받은 만남요청(보류/대기 → 추후 결정 UI)
+    // 내가 받은 만남요청(보류/대기)
     const reqSnap = await get(r(`meetingRequests/${currentUid}`));
     if(reqSnap.exists()){
       const reqs = reqSnap.val();
@@ -925,7 +963,7 @@
     });
     detachFns.push(()=>off1());
 
-    // 내가 받은 만남 요청(실시간 팝업 + 보류 처리 반영)
+    // 내가 받은 만남 요청
     const off2 = onValue(r(`meetingRequests/${currentUid}`), async snap=>{
       if(!snap.exists()) return;
       const reqs = snap.val();
@@ -941,7 +979,6 @@
           }else if(accepted===false){
             await clearPairData(currentUid, fromUid);
           }else{
-            // ✅ 보류: 상태를 held로 저장하여 추후 '나의 MATCH'에서 결정 가능
             await update(r(`meetingRequests/${currentUid}/${fromUid}`), {status:"held", updatedAt: Date.now()});
           }
         }
@@ -950,15 +987,17 @@
     });
     detachFns.push(()=>off2());
 
-    // ✅ 내가 받은 LIKE 실시간 알림 (likesReceived 인덱스 사용)
-    const off3 = onValue(r(`likesReceived/${currentUid}`), snap=>{
+    // 받은 LIKE 실시간 알림(미확인 항목)
+    const off3 = onValue(r(`likesReceived/${currentUid}`), async snap=>{
       if(!snap.exists()) return;
       const recvs = snap.val();
-      Object.values(recvs).forEach(v=>{
-        if(v && v.updatedAt && (Date.now()-v.updatedAt)<4000){
-          alertModal("누군가에게 LIKE를 받았습니다.","LIKE알림");
+      for(const from of Object.keys(recvs)){
+        const v = recvs[from];
+        if(v && v.ok && v.seen===false){
+          await alertModal("누군가에게 LIKE를 받았습니다.","LIKE알림");
+          await update(r(`likesReceived/${currentUid}/${from}`), { seen:true });
         }
-      });
+      }
     });
     detachFns.push(()=>off3());
 
@@ -1016,7 +1055,11 @@
     const uid = $("#admin-search-uid").value.trim();
     if(!uid || !/^\d+$/.test(uid)) return alertModal("고유번호를 올바르게 입력하세요.");
     const u = await getUser(uid);
-    if(!u) { $("#admin-user-summary").textContent = "존재하지 않는 사용자입니다."; $("#admin-sent-list").innerHTML=""; $("#admin-recv-list").innerHTML=""; return; }
+    if(!u) {
+      $("#admin-user-summary").textContent = "존재하지 않는 사용자입니다.";
+      $("#admin-sent-list").innerHTML=""; $("#admin-recv-list").innerHTML="";
+      return;
+    }
 
     $("#admin-user-summary").textContent =
       `${uid}번 사용자 · LIKE 제한: ${(typeof u.likeLimit==="number")?u.likeLimit:5} · 보낸횟수: ${(typeof u.likeSentCount==="number")?u.likeSentCount:await countLikesSent(uid)}`;
@@ -1050,6 +1093,9 @@
     }else{
       recvBox.innerHTML = `<div class="muted small">받은 LIKE 없음</div>`;
     }
+
+    // 빠른 삭제 버튼에 대상 uid 기억
+    $("#admin-wipe-user").dataset.uid = uid;
   };
 
   $("#admin-like-limit-dec").onclick = ()=>{
@@ -1065,6 +1111,69 @@
     if(isNaN(v) || v<0) return alertModal("LIKE 제한은 0 이상의 숫자여야 합니다.");
     await update(r(`users/${uid}`), { likeLimit: v });
     alertModal("LIKE 제한이 저장되었습니다.");
+  };
+
+  // 검색 탭에서 “이 사용자 데이터 전부 삭제”
+  $("#admin-wipe-user").onclick = async ()=>{
+    const uid = $("#admin-wipe-user").dataset.uid || $("#admin-search-uid").value.trim();
+    if(!uid) return alertModal("먼저 사용자 번호를 조회하세요.");
+    const ok = await confirmModal(`${uid}번 사용자의 모든 데이터를 삭제합니다. 계속할까요?`,{okText:"삭제"});
+    if(!ok) return;
+
+    await withLoading(async ()=>{
+      const ops = [
+        remove(r(`users/${uid}`)),
+        remove(r(`likes/${uid}`)),
+        remove(r(`likesReceived/${uid}`)),
+        remove(r(`matches/${uid}`)),
+        remove(r(`meetingRequests/${uid}`))
+      ];
+      // 양방향 정리
+      // likes: 다른 사람이 보낸 것 중 대상 uid
+      const likesAll = await get(r(`likes`));
+      if(likesAll.exists()){
+        const all = likesAll.val();
+        for(const from of Object.keys(all)){
+          if(all[from] && all[from][uid]){
+            ops.push(remove(r(`likes/${from}/${uid}`)));
+          }
+        }
+      }
+      // likesReceived: 다른 사람이 받은 것 중 대상 uid
+      const recvAll = await get(r(`likesReceived`));
+      if(recvAll.exists()){
+        const all = recvAll.val();
+        for(const to of Object.keys(all)){
+          if(all[to] && all[to][uid]){
+            ops.push(remove(r(`likesReceived/${to}/${uid}`)));
+          }
+        }
+      }
+      // matches/meetingRequests 양방향
+      const mAll = await get(r(`matches/${uid}`));
+      if(mAll.exists()){
+        const others = Object.keys(mAll.val());
+        others.forEach(other=>{
+          ops.push(remove(r(`matches/${uid}/${other}`)));
+          ops.push(remove(r(`matches/${other}/${uid}`)));
+        });
+      }
+      const reqAll = await get(r(`meetingRequests`));
+      if(reqAll.exists()){
+        const all = reqAll.val();
+        for(const target of Object.keys(all)){
+          if(all[target] && all[target][uid]){
+            ops.push(remove(r(`meetingRequests/${target}/${uid}`)));
+          }
+        }
+      }
+      await Promise.all(ops);
+    });
+
+    await alertModal("해당 사용자의 데이터가 삭제되었습니다.");
+    // 화면 갱신
+    $("#admin-sent-list").innerHTML=""; $("#admin-recv-list").innerHTML="";
+    $("#admin-user-summary").textContent = "삭제 완료";
   };
 
   // --- 관리자: 매치/만남 목록 분리 ---
@@ -1116,7 +1225,7 @@
     $("#admin-meet-count").textContent  = String(countMeet);
   }
 
-  // --- 관리자: 랜덤 번호 뽑기 (진행자/참가자 독립 풀) ---
+  // --- 관리자: 랜덤 번호 뽑기 ---
   async function getAllRegisteredIds(){
     const snap = await get(r("users"));
     if(!snap.exists()) return [];
@@ -1129,7 +1238,7 @@
     }
     return arr;
   }
-  async function drawOnce(poolKey){ // poolKey: 'host' | 'guest'
+  async function drawOnce(poolKey){
     const allIds = await getAllRegisteredIds();
     if(allIds.length===0) return alertModal("등록된 번호가 없습니다.");
     const drawnSnap = await get(r(`adminDraw/${poolKey}`));
@@ -1156,6 +1265,75 @@
     renderDrawState();
   };
 
+  // --- 관리자: 패널 하단 공용 삭제 버튼들(기존 유지 + 전체 초기화 강화) ---
+  $("#admin-del-user").onclick = async ()=>{
+    const uid = $("#admin-del-uid").value.trim();
+    if(!uid) return alertModal("삭제할 고유번호를 입력하세요.");
+    const ok = await confirmModal(`${uid}번 사용자의 모든 데이터를 삭제합니다. 계속할까요?`,{okText:"삭제"});
+    if(!ok) return;
+
+    await withLoading(async ()=>{
+      const ops = [
+        remove(r(`users/${uid}`)),
+        remove(r(`likes/${uid}`)),
+        remove(r(`likesReceived/${uid}`)),
+        remove(r(`matches/${uid}`)),
+        remove(r(`meetingRequests/${uid}`))
+      ];
+      // 반대편 정리
+      const likesAll = await get(r(`likes`));
+      if(likesAll.exists()){
+        const all = likesAll.val();
+        for(const from of Object.keys(all)){
+          if(all[from] && all[from][uid]) ops.push(remove(r(`likes/${from}/${uid}`)));
+        }
+      }
+      const recvAll = await get(r(`likesReceived`));
+      if(recvAll.exists()){
+        const all = recvAll.val();
+        for(const to of Object.keys(all)){
+          if(all[to] && all[to][uid]) ops.push(remove(r(`likesReceived/${to}/${uid}`)));
+        }
+      }
+      const mAll = await get(r(`matches/${uid}`));
+      if(mAll.exists()){
+        const others = Object.keys(mAll.val());
+        others.forEach(other=>{
+          ops.push(remove(r(`matches/${uid}/${other}`)));
+          ops.push(remove(r(`matches/${other}/${uid}`)));
+        });
+      }
+      const reqAll = await get(r(`meetingRequests`));
+      if(reqAll.exists()){
+        const all = reqAll.val();
+        for(const target of Object.keys(all)){
+          if(all[target] && all[target][uid]){
+            ops.push(remove(r(`meetingRequests/${target}/${uid}`)));
+          }
+        }
+      }
+      await Promise.all(ops);
+    });
+
+    await alertModal("해당 사용자의 데이터가 삭제되었습니다.");
+    renderAdminMatches();
+  };
+
+  $("#admin-reset").onclick = async ()=>{
+    const ok = await confirmModal("이 이벤트의 모든 계정과 데이터를 완전히 삭제합니다. 되돌릴 수 없습니다.", { okText:"초기화", cancelText:"취소", title:"전체 초기화" });
+    if(!ok) return;
+    await withLoading(async ()=>{
+      await remove(r(`users`));
+      await remove(r(`likes`));
+      await remove(r(`likesReceived`));   // ✅ 누락 없이 초기화
+      await remove(r(`matches`));
+      await remove(r(`meetingRequests`));
+      await remove(r(`adminDraw`));       // ✅ 추첨 기록도 초기화
+    });
+    await alertModal("전체 데이터 초기화가 완료되었습니다.");
+    renderAdminMatches();
+  };
+
   // ===================== 페이지 전환 =====================
   function go(id){
     Object.values(pages).forEach(hide);
@@ -1167,5 +1345,4 @@
   go("welcome");
 </script>
 </body>
-
 </html>
