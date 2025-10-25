@@ -40,7 +40,7 @@
     font-family: 'Do Hyeon', sans-serif;
   }
   .page-title{
-    text-align:center; font-size:24px; /* 📈 */
+    text-align:center; font-size:28px; /* 📈 */
     margin-bottom:8px;
     font-family: 'Do Hyeon', sans-serif;
   }
@@ -215,11 +215,11 @@
   <section id="page-menu" class="card hidden">
     <div class="grid">
       <button class="tile" id="btn-profile">
-        <strong>프로필<br>설정하기</strong>
+        <strong>👤<br>프로필<br>설정하기</strong>
         <span class="muted small">자기소개·이상형</span>
       </button>
       <button class="tile" id="btn-browse">
-        <strong>다른사람<br>구경하기</strong>
+        <strong>👀<br>다른사람<br>구경하기</strong>
         <span class="muted small">번호순 프로필</span>
       </button>
       <button class="tile like" id="btn-like">
@@ -243,7 +243,7 @@
   <!-- ===== [PAGE] 프로필 설정하기 ===== -->
   <section id="page-profile" class="card hidden">
     <img class="logo-mini" id="logo-mini-profile" alt="로고" />
-    <h2 class="page-title">프로필 설정하기</h2>
+    <h2 class="page-title">👤 프로필 설정하기</h2>
 
     <p class="muted">내 고유번호: <span class="badge" id="me-uid-profile"></span><br>*민감하거나 불쾌감을 줄 수 있는 내용 작성은 자제바랍니다.</p>
     <textarea id="intro" maxlength="50" placeholder="자기소개 (최대 50자)  ex. 오늘 번개 구해요."></textarea>
@@ -266,7 +266,7 @@
   <!-- ===== [PAGE] 다른사람 구경하기 ===== -->
   <section id="page-browse" class="card hidden">
     <img class="logo-mini" id="logo-mini-browse" alt="로고" />
-    <h2 class="page-title">다른사람 구경하기</h2>
+    <h2 class="page-title">다른사람 구경하기 👀</h2>
 
     <!-- BIG counter -->
     <div id="like-counter-browse" class="counter-banner">
@@ -993,7 +993,7 @@
       const data = snap.val();
       Object.entries(data).forEach(([other, m])=>{
         if(m && m.status==="matched" && (Date.now()-m.updatedAt)<4000){
-          alertModal(`${other}번 사용자와<br>MATCH가 되었습니다!\n\n매치 현황을 확인해 주시기 바랍니다.`);
+          alertModal(`${other}번 사용자와 MATCH가 되었습니다!\n⭐ ⭐ ⭐ ⭐ ⭐\n매치 현황을 확인해 주시기 바랍니다.`);
         }
         if(m && m.status==="meeting_accepted" && (Date.now()-m.updatedAt)<4000){
           alertModal("만남이 성사되었습니다.\n👉 💛 👈\n지금바로 만남을 위해 직원에게 문의하세요!");
@@ -1015,7 +1015,7 @@
             await update(r(`matches/${currentUid}/${fromUid}`), {status:"meeting_accepted", updatedAt: Date.now()});
             await update(r(`matches/${fromUid}/${currentUid}`), {status:"meeting_accepted", updatedAt: Date.now()});
             await remove(r(`meetingRequests/${currentUid}/${fromUid}`));
-            await alertModal("만남이 성사되었습니다.\n👉💛👈\n지금바로 만남을 위해<br>직원에게 문의하세요!");
+            await alertModal("만남이 성사되었습니다.\n👉💛👈\n지금바로 만남을 위해 직원에게 문의하세요!");
           }else if(accepted===false){
             await clearPairData(currentUid, fromUid);
           }else{
@@ -1034,7 +1034,7 @@
       for(const from of Object.keys(recvs)){
         const v = recvs[from];
         if(v && v.ok && v.seen===false){
-          await alertModal("누군가에게 LIKE를 받았습니다.","LIKE 알림");
+          await alertModal("누군가에게 LIKE👍를 받았습니다.", "❤️LIKE 알림❤️");
           await update(r(`likesReceived/${currentUid}/${from}`), { seen:true });
         }
       }
@@ -1383,6 +1383,7 @@
 </script>
 </body>
 </html>
+
 
 
 
