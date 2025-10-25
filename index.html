@@ -116,7 +116,8 @@
   }
   .modal h3{margin:0 0 10px; font-size:1.2em;} /* 제목도 큼직하게 */
   .modal .actions{display:flex; gap:12px; margin-top:14px}
-
+   #modal-title, #modal-message { text-align: center; }
+  
   /* ===== 로딩 오버레이 ===== */
   .loading-backdrop{
     position:fixed; inset:0; background:rgba(0,0,0,.35);
@@ -331,7 +332,7 @@
     <p class="small muted">현재 이벤트: <span class="badge" id="current-event"></span></p>
 
     <div class="row" style="margin-top:10px;">
-      <button id="admin-tab-search" class="btn">사용자 검색/관리</button>
+      <button id="admin-tab-search" class="btn">사용자<br>검색/관리</button>
       <button id="admin-tab-matches" class="btn">매치/만남 목록</button>
       <button id="admin-tab-draw" class="btn">랜덤 번호 뽑기</button>
     </div>
@@ -346,7 +347,7 @@
       <div id="admin-user-summary" class="small muted" style="margin:8px 0;"></div>
 
       <div class="row">
-        <input id="admin-like-limit" inputmode="numeric" pattern="[0-9]*" placeholder="LIKE 제한(기본 5)" />
+        <input id="admin-like-limit" inputmode="numeric" pattern="[0-9]*" placeholder="제한" />
         <button id="admin-like-limit-dec" class="btn">-</button>
         <button id="admin-like-limit-inc" class="btn">+</button>
         <button id="admin-like-limit-save" class="btn-primary">저장</button>
@@ -377,7 +378,7 @@
       <h4 style="margin-top:14px">개별 사용자 삭제</h4>
       <div class="row">
         <input id="admin-del-uid" placeholder="삭제할 번호" inputmode="numeric" pattern="[0-9]*" />
-        <button id="admin-del-user" class="btn-danger">해당 사용자 데이터 삭제</button>
+        <button id="admin-del-user" class="btn-danger">해당 사용자<br>DATA 삭제</button>
       </div>
 
       <h4 style="margin-top:14px">이벤트 전체 초기화</h4>
@@ -1354,4 +1355,5 @@
 </script>
 </body>
 </html>
+
 
