@@ -57,7 +57,7 @@
   .row{display:flex;gap:10px}
   input,button,textarea,select{
     width:100%; padding:14px 13px; border-radius:12px;
-    border:1px solid rgba(255,255,255,.08); background:#0b1532; color:#f4f6ff; font-size:18px; /* 📈 */
+    border:1px solid rgba(255,255,255,.08); background:#0b1532; color:#f4f6ff; font-size:16px; /* 📈 */
   }
   input::placeholder,textarea::placeholder{color:#7e8bb8}
   textarea{resize:none; min-height:90px}
@@ -83,7 +83,7 @@
     min-height:200px; /* 📈 세로 2배 */
     background:#0f1f4b; border:1px solid rgba(255,255,255,.06)
   }
-  .tile strong{font-size:18px; /* 📈 */ font-family:'Do Hyeon', sans-serif;}
+  .tile strong{font-size:30px; /* 📈 */ font-family:'Do Hyeon', sans-serif;}
   .tile.like{background:#14265a; border:1px solid #29418d; box-shadow:0 0 0 2px rgba(41,65,141,.25) inset}
   .tile.like strong{ color: var(--yellow); }
 
@@ -101,18 +101,30 @@
   }
   .search-row {
   display: flex;
-  gap: 8px;            
-  align-items: center;   
+  justify-content: center;
+  align-items: center;
+  gap: 8px; /* 검색창과 버튼 사이 간격 */
+  width: 100%;
+  max-width: 400px; /* 모바일에 맞게 조정 (예: 320~400px) */
+  margin: 0 auto 12px; /* 가운데 정렬 + 아래 여백 */
 }
-
 .search-row input {
-  flex: 1;              
+  flex: 1;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.1);
+  background: #0b1532;
+  color: #f4f6ff;
+  font-size: 15px;
 }
-
 .search-row button {
-  flex-shrink: 0;       
-  white-space: nowrap;   
-  padding: 12px 14px;  
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: none;
+  background: var(--yellow);
+  color: #1a1a1a;
+  font-weight: 700;
+  cursor: pointer;
 }
   
   .hidden{display:none !important}
@@ -1372,6 +1384,7 @@
 </script>
 </body>
 </html>
+
 
 
 
