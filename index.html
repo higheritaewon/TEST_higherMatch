@@ -99,32 +99,31 @@
     display:flex; align-items:center; gap:10px;
     padding:12px; border-radius:12px; background:#0d1a3e; border:1px solid rgba(255,255,255,.06)
   }
-  .search-row {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 8px; /* 검색창과 버튼 사이 간격 */
-  width: 100%;
-  max-width: 400px; /* 모바일에 맞게 조정 (예: 320~400px) */
-  margin: 0 auto 12px; /* 가운데 정렬 + 아래 여백 */
+/* 검색 행: 한 줄 정렬 + 간격 */
+.search-row{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  margin:6px 0 10px;
 }
-.search-row input {
-  flex: 1;
-  padding: 10px 12px;
-  border-radius: 10px;
-  border: 1px solid rgba(255,255,255,0.1);
-  background: #0b1532;
-  color: #f4f6ff;
-  font-size: 15px;
+
+/* 🔹 입력창을 넓게: flex=1 로 남는 공간 전부 차지 */
+#browse-search-input{
+  flex:1 1 auto;           /* 남는 폭 대부분을 가져감 */
+  min-width:0;             /* flex 수축 시 내용 넘침 방지 */
+  padding:12px 12px;
+  font-size:16px;
+  border-radius:10px;
 }
-.search-row button {
-  padding: 10px 14px;
-  border-radius: 10px;
-  border: none;
-  background: var(--yellow);
-  color: #1a1a1a;
-  font-weight: 700;
-  cursor: pointer;
+
+/* 🔹 버튼은 좁게: 고정(or 최소) 폭 + 줄어들지 않게 */
+#browse-search-btn,
+#browse-search-clear{
+  flex:0 0 88px;           /* 가로 88px 고정 (원하면 72~96px로 조정) */
+  padding:10px 0;
+  text-align:center;
+  font-size:15px;
+  border-radius:10px;
 }
   
   .hidden{display:none !important}
@@ -216,19 +215,19 @@
   <section id="page-menu" class="card hidden">
     <div class="grid">
       <button class="tile" id="btn-profile">
-        <strong>프로필 설정하기</strong>
+        <strong>프로필<br>설정하기</strong>
         <span class="muted small">자기소개·이상형</span>
       </button>
       <button class="tile" id="btn-browse">
-        <strong>다른사람 구경하기</strong>
+        <strong>다른사람<br>구경하기</strong>
         <span class="muted small">번호순 프로필</span>
       </button>
       <button class="tile like" id="btn-like">
-        <strong>👍LIKE 보내기</strong>
+        <strong>👍<br>LIKE<br>보내기</strong>
         <span class="muted small">번호 입력하여 전송</span>
       </button>
       <button class="tile" id="btn-matches">
-        <strong>나의 MATCH 💛</strong>
+        <strong>나의<br>MATCH<br>💛</strong>
         <span class="muted small">만남 요청/수락</span>
       </button>
     </div>
@@ -1384,6 +1383,7 @@
 </script>
 </body>
 </html>
+
 
 
 
