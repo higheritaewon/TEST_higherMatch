@@ -248,8 +248,8 @@
     <!-- 검색바 -->
     <div class="search-row">
       <input id="browse-search-input" inputmode="numeric" pattern="[0-9]*" placeholder="번호로 검색 (예: 12)" />
-      <button id="browse-search-btn" class="btn">검색</button>
-      <button id="browse-search-clear" class="btn">전체</button>
+      <button id="browse-search-btn" class="btn small">검색</button>
+      <button id="browse-search-clear" class="btn small">전체</button>
     </div>
 
     <div id="browse-list" class="list"></div>
@@ -366,22 +366,22 @@
     <!-- 매치/만남 목록 -->
     <div id="admin-panel-matches" class="hidden" style="margin-top:12px;">
       <h3>매치/만남 목록</h3>
-      <h4 style="margin-top:8px">매치 목록(쌍방 LIKE)</h4>
+      <h4 style="margin-top:8px">MATCH 목록</h4>
       <div id="admin-matches" class="list"></div>
-      <p class="small">총 매치 수: <span class="count" id="admin-match-count">0</span></p>
+      <p class="small">전체 매치 수: <span class="count" id="admin-match-count">0</span></p>
 
       <h4 style="margin-top:8px">만남 성사 목록</h4>
       <div id="admin-meetings" class="list"></div>
-      <p class="small">총 성사 수: <span class="count" id="admin-meet-count">0</span></p>
+      <p class="small">전체 성사 수: <span class="count" id="admin-meet-count">0</span></p>
 
       <h4 style="margin-top:14px">개별 사용자 삭제</h4>
       <div class="row">
-        <input id="admin-del-uid" placeholder="삭제할 고유번호" inputmode="numeric" pattern="[0-9]*" />
+        <input id="admin-del-uid" placeholder="삭제할 번호" inputmode="numeric" pattern="[0-9]*" />
         <button id="admin-del-user" class="btn-danger">해당 사용자 데이터 삭제</button>
       </div>
 
       <h4 style="margin-top:14px">이벤트 전체 초기화</h4>
-      <button id="admin-reset" class="btn-danger">모든 계정/데이터 완전 삭제</button>
+      <button id="admin-reset" class="btn-danger">모든 계정/DATA 완전 삭제</button>
     </div>
 
     <!-- 랜덤 번호 뽑기 -->
@@ -816,7 +816,7 @@
     for(const from of Object.keys(recvs)){
       const v = recvs[from];
       if(v && v.ok && v.seen===false){
-        await alertModal("누군가에게 LIKE를 받았습니다.", "LIKE알림");
+        await alertModal("누군가에게 LIKE를 받았습니다.", "LIKE 알림");
         await update(r(`likesReceived/${currentUid}/${from}`), { seen:true });
       }
     }
@@ -1228,7 +1228,7 @@
       }
     }
     if(countMatch===0) boxMatch.innerHTML = `<div class="muted small">현재 매치된 커플이 없습니다.</div>`;
-    if(countMeet===0) boxMeet.innerHTML  = `<div class="muted small">현재 만넘 성사된 커플이 없습니다.</div>`;
+    if(countMeet===0) boxMeet.innerHTML  = `<div class="muted small">현재 만남남 성사된 커플이 없습니다.</div>`;
     $("#admin-match-count").textContent = String(countMatch);
     $("#admin-meet-count").textContent  = String(countMeet);
   }
@@ -1269,7 +1269,7 @@
   $("#draw-guest").onclick = ()=> drawOnce("guest");
   $("#draw-reset").onclick = async ()=>{
     await remove(r(`adminDraw`));
-    await alertModal("두 풀의 추첨 기록이 초기화되었습니다.");
+    await alertModal("전체 추첨 기록이 초기화되었습니다.");
     renderDrawState();
   };
 
@@ -1354,3 +1354,4 @@
 </script>
 </body>
 </html>
+
