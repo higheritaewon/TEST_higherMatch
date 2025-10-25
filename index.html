@@ -617,7 +617,7 @@
   async function refreshLikeCounters(){
     if(!currentUid) return;
     const u = await getUser(currentUid);
-    const limit = (u && typeof u.likeLimit==="number") ? u.likeLimit : 5;
+    const limit = (u && typeof u.likeLimit==="number") ? u.likeLimit : 7;
     const sentCount = (u && typeof u.likeSentCount==="number") ? u.likeSentCount : await countLikesSent(currentUid);
     const remain = Math.max(0, limit - sentCount);
     setLikeUI(remain, limit);
@@ -651,7 +651,7 @@
         if(!uid || !/^\d+$/.test(uid)) return alertModal("고유번호는 숫자여야 합니다.");
         if(!/^\d{4}$/.test(pin)) return alertModal("비밀번호는 숫자 4자리여야 합니다.");
         if(await userExists(uid)) return alertModal("이미 존재하는 번호입니다.\n\n로그인해 주세요.");
-        await set(r(`users/${uid}`), { pin, intro:"", ideal:"", createdAt: Date.now(), likeLimit:5, likeSentCount:0 });
+        await set(r(`users/${uid}`), { pin, intro:"", ideal:"", createdAt: Date.now(), likeLimit:7, likeSentCount:0 });
         await alertModal("계정이 생성 되었습니다.\n\n로그인 후 이용해 주세요.");
       }catch(err){
         console.error(err);
@@ -680,7 +680,7 @@
 
         // 누락 필드 보정
         const patch = {};
-        if(typeof user.likeLimit!=="number") patch.likeLimit = 5;
+        if(typeof user.likeLimit!=="number") patch.likeLimit = 7;
         if(typeof user.likeSentCount!=="number"){ patch.likeSentCount = await countLikesSent(currentUid); }
         if(Object.keys(patch).length) await update(r(`users/${currentUid}`), patch);
 
@@ -803,7 +803,7 @@
     const userRef = r(`users/${currentUid}`);
     const ok = await runTransaction(userRef, (u)=>{
       if(!u) return u;
-      if(typeof u.likeLimit!=="number") u.likeLimit = 5;
+      if(typeof u.likeLimit!=="number") u.likeLimit = 7;
       if(typeof u.likeSentCount!=="number") u.likeSentCount = 0;
       if(u.likeSentCount >= u.likeLimit){ return u; } // 더 이상 불가
       u.likeSentCount += 1;
@@ -1102,9 +1102,9 @@
     }
 
     $("#admin-user-summary").textContent =
-      `${uid}번 사용자 · LIKE 제한: ${(typeof u.likeLimit==="number")?u.likeLimit:5} · 보낸횟수: ${(typeof u.likeSentCount==="number")?u.likeSentCount:await countLikesSent(uid)}`;
+      `${uid}번 사용자 · LIKE 제한: ${(typeof u.likeLimit==="number")?u.likeLimit:7} · 보낸횟수: ${(typeof u.likeSentCount==="number")?u.likeSentCount:await countLikesSent(uid)}`;
 
-    $("#admin-like-limit").value = (typeof u.likeLimit==="number")?u.likeLimit:5;
+    $("#admin-like-limit").value = (typeof u.likeLimit==="number")?u.likeLimit:7;
 
     // 보낸 LIKE
     const sent = await get(r(`likes/${uid}`));
@@ -1139,14 +1139,14 @@
   };
 
   $("#admin-like-limit-dec").onclick = ()=>{
-    const inp = $("#admin-like-limit"); let v = parseInt(inp.value||"5",10); v = isNaN(v)?5:Math.max(0, v-1); inp.value = v;
+    const inp = $("#admin-like-limit"); let v = parseInt(inp.value||"7",10); v = isNaN(v)?7:Math.max(0, v-1); inp.value = v;
   };
   $("#admin-like-limit-inc").onclick = ()=>{
-    const inp = $("#admin-like-limit"); let v = parseInt(inp.value||"5",10); v = isNaN(v)?5:v+1; inp.value = v;
+    const inp = $("#admin-like-limit"); let v = parseInt(inp.value||"7",10); v = isNaN(v)?7:v+1; inp.value = v;
   };
   $("#admin-like-limit-save").onclick = async ()=>{
     const uid = $("#admin-search-uid").value.trim();
-    const v = parseInt($("#admin-like-limit").value||"5",10);
+    const v = parseInt($("#admin-like-limit").value||"7",10);
     if(!uid || !/^\d+$/.test(uid)) return alertModal("먼저 사용자 번호를 조회하세요.");
     if(isNaN(v) || v<0) return alertModal("LIKE 제한은 0 이상의 숫자여야 합니다.");
     await update(r(`users/${uid}`), { likeLimit: v });
@@ -1383,6 +1383,7 @@
 </script>
 </body>
 </html>
+
 
 
 
