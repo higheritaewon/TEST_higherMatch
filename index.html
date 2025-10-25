@@ -796,7 +796,7 @@
     // 중복 방지
     const already = await get(r(`likes/${currentUid}/${toId}`));
     if(already.exists()){
-      return alertModal("이미 이 사용자에게<br>LIKE를 보냈습니다.");
+      return alertModal("이미 이 사용자에게 LIKE를 보냈습니다.");
     }
 
     // 제한 체크 & 증가 (트랜잭션)
@@ -810,7 +810,7 @@
       return u;
     });
     const val = ok && ok.snapshot && ok.snapshot.val();
-    if(!val) return alertModal("오류가 발생했습니다.<br>다시 시도해 주세요.");
+    if(!val) return alertModal("오류가 발생했습니다. 다시 시도해 주세요.");
     if(val.likeSentCount > val.likeLimit){
       await update(userRef, { likeSentCount: val.likeLimit });
       return alertModal("LIKE를 모두 사용하였습니다.");
@@ -949,7 +949,7 @@
             await update(r(`matches/${fromUid}/${currentUid}`), {status:"meeting_accepted", updatedAt: Date.now()});
             await remove(r(`meetingRequests/${currentUid}/${fromUid}`));
           });
-          await alertModal("만남이 성사되었습니다.\n👉 💛 👈\n지금바로 만남을 위해<br>직원에게 문의하세요!");
+          await alertModal("만남이 성사되었습니다.\n👉 💛 👈\n지금바로 만남을 위해 직원에게 문의하세요!");
           loadMatches();
         };
       });
@@ -1383,6 +1383,7 @@
 </script>
 </body>
 </html>
+
 
 
 
