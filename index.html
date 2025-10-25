@@ -20,7 +20,10 @@
   html,body{height:100%}
   body{
     margin:0; background:linear-gradient(180deg,var(--bg),#0a142e 55%,#08102a);
-    color:var(--text); font-family:system-ui,-apple-system,Segoe UI,Roboto,Pretendard,Apple SD Gothic Neo,Helvetica,Arial,sans-serif;
+    color:var(--text);
+    font-family:system-ui,-apple-system,Segoe UI,Roboto,Pretendard,Apple SD Gothic Neo,Helvetica,Arial,sans-serif;
+    font-size:17px; /* 📈 기본 폰트 약 +1~2pt */
+    line-height:1.45;
   }
   .container{max-width:480px;margin:0 auto;padding:16px 14px 28px}
   .card{
@@ -31,15 +34,17 @@
   }
   h1,h2,h3{margin:0 0 14px}
   h1.title{
-    font-size:28px; letter-spacing:.8px; text-align:center; margin-top:8px;
+    font-size:30px; /* 📈 */
+    letter-spacing:.8px; text-align:center; margin-top:8px;
     background:linear-gradient(90deg,#fff,var(--yellow)); -webkit-background-clip:text; -webkit-text-fill-color:transparent;
     font-family: 'Do Hyeon', sans-serif;
   }
   .page-title{
-    text-align:center; font-size:22px; margin-bottom:8px;
+    text-align:center; font-size:24px; /* 📈 */
+    margin-bottom:8px;
     font-family: 'Do Hyeon', sans-serif;
   }
-  .subtitle{color:var(--muted); font-size:13px; text-align:center; margin-top:-6px; margin-bottom:14px}
+  .subtitle{color:var(--muted); font-size:14px; /* 📈 */ text-align:center; margin-top:-6px; margin-bottom:14px}
 
   .logo-wrap{display:flex;flex-direction:column;align-items:center;gap:10px;margin:8px 0 16px}
   .logo{
@@ -52,7 +57,7 @@
   .row{display:flex;gap:10px}
   input,button,textarea,select{
     width:100%; padding:14px 13px; border-radius:12px;
-    border:1px solid rgba(255,255,255,.08); background:#0b1532; color:#f4f6ff; font-size:16px;
+    border:1px solid rgba(255,255,255,.08); background:#0b1532; color:#f4f6ff; font-size:18px; /* 📈 */
   }
   input::placeholder,textarea::placeholder{color:#7e8bb8}
   textarea{resize:none; min-height:90px}
@@ -67,24 +72,27 @@
   .btn-success{background:var(--success); color:#0e2824}
   .badge{
     display:inline-block; padding:2px 8px; border:1px solid rgba(255,255,255,.15);
-    border-radius:999px; font-size:12px; background:#0e1f4a;
+    border-radius:999px; font-size:13px; /* 📈 */
+    background:#0e1f4a;
   }
 
   .grid{display:grid; grid-template-columns:1fr 1fr; gap:12px}
   .tile{
     display:flex;flex-direction:column;gap:8px;align-items:center;justify-content:center;
-    padding:18px 12px; border-radius:14px; text-align:center; min-height:100px; background:#0f1f4b; border:1px solid rgba(255,255,255,.06)
+    padding:18px 12px; border-radius:14px; text-align:center;
+    min-height:200px; /* 📈 세로 2배 */
+    background:#0f1f4b; border:1px solid rgba(255,255,255,.06)
   }
-  .tile strong{font-size:16px; font-family:'Do Hyeon', sans-serif;}
+  .tile strong{font-size:18px; /* 📈 */ font-family:'Do Hyeon', sans-serif;}
   .tile.like{background:#14265a; border:1px solid #29418d; box-shadow:0 0 0 2px rgba(41,65,141,.25) inset}
   .tile.like strong{ color: var(--yellow); }
 
-  .muted{color:var(--muted); font-size:13px}
-  .small{font-size:12px}
+  .muted{color:var(--muted); font-size:14px} /* 📈 */
+  .small{font-size:13px} /* 📈 */
   .center{text-align:center}
   .spacer{height:8px}
   .footerbar{
-    margin-top:16px; display:flex; align-items:center; justify-content:space-between; gap:10px; color:var(--muted); font-size:12px
+    margin-top:16px; display:flex; align-items:center; justify-content:space-between; gap:10px; color:var(--muted); font-size:13px /* 📈 */
   }
   .list{display:flex;flex-direction:column; gap:10px}
   .list-item{
@@ -97,20 +105,26 @@
   .li-actions{ flex: 1; display:flex; justify-content:flex-end; align-items:stretch; }
   .li-actions .btn-like{ width:100%; }
 
+  /* ===== MODAL: 1.5x 확대 + 가독성 ===== */
   .modal-backdrop{
     position:fixed; inset:0; background:rgba(0,0,0,.55); display:none; align-items:center; justify-content:center; z-index:50
   }
-  .modal{width:90%; max-width:420px; background:#0d1534; border:1px solid rgba(255,255,255,.1); border-radius:16px; padding:16px}
-  .modal h3{margin:0 0 8px}
-  .modal .actions{display:flex; gap:10px; margin-top:12px}
+  .modal{
+    width:90%; max-width:480px; /* 약간 확대 */
+    background:#0d1534; border:1px solid rgba(255,255,255,.1); border-radius:16px; padding:18px;
+    font-size:1.5em; line-height:1.4; /* 📈 전체 1.5배 */
+  }
+  .modal h3{margin:0 0 10px; font-size:1.2em;} /* 제목도 큼직하게 */
+  .modal .actions{display:flex; gap:12px; margin-top:14px}
 
+  /* ===== 로딩 오버레이 ===== */
   .loading-backdrop{
     position:fixed; inset:0; background:rgba(0,0,0,.35);
     display:none; align-items:center; justify-content:center; z-index:60;
   }
   .loading-box{
     background:#0d1534; border:1px solid rgba(255,255,255,.12);
-    padding:14px 16px; border-radius:12px; font-size:14px;
+    padding:14px 16px; border-radius:12px; font-size:16px;
     display:flex; align-items:center; gap:10px;
   }
   .spinner{
@@ -121,18 +135,19 @@
 
   /* ===== BIG LIKE COUNTER ===== */
   .counter-banner{
-    margin:4px 0 10px;
-    padding:12px 14px;
+    margin:6px 0 12px; /* 약간 여백 확대 */
+    padding:14px 16px;
     border-radius:14px;
     background:#09163a;
     border:1px solid rgba(255,255,255,.08);
     text-align:center;
   }
   .counter-banner .num{
-    font-size:24px; font-weight:800; letter-spacing:.5px;
+    font-size:26px; /* 📈 */
+    font-weight:800; letter-spacing:.5px;
     font-family:'Do Hyeon', sans-serif;
   }
-  .counter-banner .cap{display:block; margin-top:4px; font-size:12px; color:var(--muted)}
+  .counter-banner .cap{display:block; margin-top:6px; font-size:13px; color:var(--muted)}
   .counter-banner.exhausted{background:#2a0e12; border-color:#3b1318}
 </style>
 </head>
@@ -160,7 +175,9 @@
       <button id="admin-entry-btn" class="btn-accent small">관리자</button>
     </div>
     <div class="spacer"></div>
-    <p class="subtitle small"><br/>이벤트용 익명 서비스입니다.<br/>BETA SERVICE @higher_itaewon<br/></p>
+    <p class="subtitle small">
+      <br>이벤트용 익명 서비스입니다.<br>BETA SERVICE @higher_itaewon<br>
+    </p>
   </section>
 
   <div id="topbar-common" class="hidden"></div>
@@ -199,10 +216,10 @@
     <img class="logo-mini" id="logo-mini-profile" alt="로고" />
     <h2 class="page-title">프로필 설정하기</h2>
 
-    <p class="muted">내 고유번호: <span class="badge" id="me-uid-profile"></span><br/>*민감하거나 불쾌감을 줄 수 있는 내용 작성은 자제바랍니다.</p>
-    <textarea id="intro" maxlength="50" placeholder="자기소개 (최대 50자) ex.오늘 번개 구해요."></textarea>
+    <p class="muted">내 고유번호: <span class="badge" id="me-uid-profile"></span><br>*민감하거나 불쾌감을 줄 수 있는 내용 작성은 자제바랍니다.</p>
+    <textarea id="intro" maxlength="50" placeholder="자기소개 (최대 50자)  ex. 오늘 번개 구해요."></textarea>
     <div class="spacer"></div>
-    <textarea id="ideal" maxlength="50" placeholder="이상형 (최대 50자) ex. 짧은 머리 감자상"></textarea>
+    <textarea id="ideal" maxlength="50" placeholder="이상형 (최대 50자)  ex. 짧은 머리 감자상"></textarea>
 
     <p id="login-status-profile-top" class="center muted small" style="margin-top:12px;"></p>
 
@@ -275,7 +292,7 @@
   <!-- ===== [PAGE] 나의 MATCH 현황보기 ===== -->
   <section id="page-matches" class="card hidden">
     <img class="logo-mini" id="logo-mini-matches" alt="로고" />
-    <h2 class="page-title">나의 MATCH 현황 💛</h2>
+    <h2 class="page-title">나의 MATCH 💛</h2>
 
     <div id="matches-list" class="list"></div>
 
@@ -488,7 +505,7 @@
     if (loadingEl) hide(loadingEl);
     return new Promise(res=>{
       modalTitle.textContent = title;
-      modalMsg.textContent = message;
+      modalMsg.textContent = String(message).replace(/\n{3,}/g, "\n\n"); // 줄바꿈 과도 시 정리
       modalActions.innerHTML = `<button id="modal-ok" class="btn-primary">확인</button>`;
       $("#modal-ok").onclick = ()=>{ hide(modal); res(true); };
       show(modal);
@@ -498,7 +515,7 @@
     if (loadingEl) hide(loadingEl);
     return new Promise(res=>{
       modalTitle.textContent = title;
-      modalMsg.textContent = message;
+      modalMsg.textContent = String(message).replace(/\n{3,}/g, "\n\n");
       modalActions.innerHTML = `
         <button id="modal-cancel" class="btn">${cancelText}</button>
         <button id="modal-ok" class="btn-primary">${okText}</button>`;
@@ -511,7 +528,7 @@
     if (loadingEl) hide(loadingEl);
     return new Promise(res=>{
       modalTitle.textContent = "만남 요청";
-      modalMsg.textContent = message;
+      modalMsg.textContent = String(message).replace(/\n{3,}/g, "\n\n");
       modalActions.innerHTML = `
         <button id="modal-decline" class="btn-danger">거절</button>
         <button id="modal-hold" class="btn">보류</button>
@@ -550,26 +567,22 @@
   // ===== LIKE 카운터/배너/UI =====
   function setLikeUI(remain, limit){
     likeRemain = remain; likeLimit = limit;
-    // 숫자 업데이트
     const n1 = $("#like-remaining-like-num");
     const n2 = $("#like-remaining-browse-num");
     if(n1) n1.textContent = `남은 LIKE: ${remain} / ${limit}`;
     if(n2) n2.textContent = `남은 LIKE: ${remain} / ${limit}`;
 
-    // 배너 스타일
     const b1 = $("#like-counter-like");
     const b2 = $("#like-counter-browse");
     const exhausted = (remain<=0);
     [b1,b2].forEach(b=>{ if(!b) return; b.classList.toggle("exhausted", exhausted); });
 
-    // 보내기 버튼/목록 버튼 제어
+    // ❗이제 비활성화하지 않음: 클릭 시 알림만 뜨게 핸들러에서 제어
     const sendBtn = $("#send-like-btn");
-    if(sendBtn){ sendBtn.disabled = exhausted; sendBtn.title = exhausted ? "LIKE를 모두 사용하였습니다." : ""; }
+    if(sendBtn){ sendBtn.title = exhausted ? "LIKE를 모두 사용하였습니다." : ""; }
 
-    // 목록의 LIKE 버튼들
     document.querySelectorAll("[data-like]").forEach(btn=>{
-      btn.disabled = exhausted;
-      btn.title = exhausted ? "남은 LIKE가 없습니다" : "";
+      btn.title = exhausted ? "LIKE를 모두 사용하였습니다." : "";
     });
   }
   async function refreshLikeCounters(){
@@ -608,18 +621,18 @@
         const pin = $("#login-pin").value.trim();
         if(!uid || !/^\d+$/.test(uid)) return alertModal("고유번호는 숫자여야 합니다.");
         if(!/^\d{4}$/.test(pin)) return alertModal("비밀번호는 숫자 4자리여야 합니다.");
-        if(await userExists(uid)) return alertModal("이미 존재하는 번호입니다. 로그인 해주세요.");
+        if(await userExists(uid)) return alertModal("이미 존재하는 번호입니다.\n\n로그인해 주세요.");
         await set(r(`users/${uid}`), { pin, intro:"", ideal:"", createdAt: Date.now(), likeLimit:5, likeSentCount:0 });
-        await alertModal("계정이 생성 되었습니다.");
+        await alertModal("계정이 생성 되었습니다.\n\n로그인 후 이용해 주세요.");
       }catch(err){
         console.error(err);
         const msg = (err && err.message) ? err.message : String(err);
         if(String(err && err.code).includes("permission_denied")){
-          alertModal("데이터베이스 권한 오류입니다.\n- Authentication: Anonymous 활성화 확인\n- Database 규칙(.read/.write) 확인", "권한 오류");
+          alertModal("데이터베이스 권한 오류입니다.\n\n- Authentication: Anonymous 활성화 확인\n- Database 규칙(.read/.write) 확인", "권한 오류");
         }else if(msg.includes("databaseURL")){
           alertModal("firebaseConfig.databaseURL이 올바른지 확인해 주세요.", "설정 오류");
         }else{
-          alertModal("등록하기 중 오류가 발생했습니다.\n" + msg, "오류");
+          alertModal("등록하기 중 오류가 발생했습니다.\n\n" + msg, "오류");
         }
       }
     });
@@ -632,8 +645,8 @@
         const pin = $("#login-pin").value.trim();
         if(!uid) return alertModal("고유번호를 입력하세요.");
         const user = await getUser(uid);
-        if(!user){ return alertModal("해당 번호가 없습니다. 다시 시도해 주시기 바랍니다."); }
-        if(user.pin !== pin){ return alertModal("비밀번호가 일치하지 않습니다. 다시 시도해 주시기 바랍니다."); }
+        if(!user){ return alertModal("해당 번호가 없습니다.\n\n다시 시도해 주시기 바랍니다."); }
+        if(user.pin !== pin){ return alertModal("비밀번호가 일치하지 않습니다.\n\n다시 시도해 주시기 바랍니다."); }
         currentUid = uid; currentPin = pin;
 
         // 누락 필드 보정
@@ -644,11 +657,11 @@
 
         attachRealtimeListeners();
         await refreshLikeCounters();
-        await checkUnseenLikes();   // ✅ 로그인 직후 미확인 LIKE 알림 띄우기
+        await checkUnseenLikes();   // ✅ 로그인 직후 미확인 LIKE 알림
         go("menu");
       }catch(err){
         console.error(err);
-        alertModal("로그인 중 오류가 발생했습니다.\n" + ((err && err.message) ? err.message : String(err)));
+        alertModal("로그인 중 오류가 발생했습니다.\n\n" + ((err && err.message) ? err.message : String(err)));
       }
     });
   };
@@ -719,11 +732,13 @@
       wrap.appendChild(item);
     });
 
-    // 버튼 핸들러 + 남은 횟수 0이면 즉시 비활성화
+    // 버튼 핸들러 (소진 시 알림만)
     wrap.querySelectorAll("[data-like]").forEach(btn=>{
-      btn.onclick = ()=> sendLike(btn.getAttribute("data-like"));
-      btn.disabled = (likeRemain<=0);
-      btn.title = (likeRemain<=0) ? "남은 LIKE가 없습니다" : "";
+      const toId = btn.getAttribute("data-like");
+      btn.onclick = ()=> {
+        if(likeRemain<=0){ alertModal("LIKE를 모두 사용하였습니다."); return; }
+        sendLike(toId);
+      };
     });
   }
   // 검색 UI
@@ -736,7 +751,7 @@
 
   // ===== LIKE 보내기 =====
   $("#send-like-btn").onclick = async ()=>{
-    if(likeRemain<=0){ return alertModal("LIKE를 모두 사용하였습니다."); }
+    if(likeRemain<=0){ return alertModal("LIKE를 모두 사용하였습니다."); } // 실행 차단
     const toId = $("#to-like").value.trim();
     if(!/^\d+$/.test(toId)) return alertModal("상대 고유번호를 숫자로 입력하세요.");
     await withLoading(async ()=>{ await sendLike(toId); });
@@ -744,10 +759,10 @@
 
   async function sendLike(toId){
     if(!currentUid) return;
-    if(likeRemain<=0) return alertModal("LIKE를 모두 사용하였습니다.");
+    if(likeRemain<=0) return alertModal("LIKE를 모두 사용하였습니다."); // 재확인
     if(toId===currentUid) return alertModal("본인에게는 보낼 수 없습니다.");
     const exists = await userExists(toId);
-    if(!exists) return alertModal("해당 번호가 없습니다. 다시 시도해 주시기 바랍니다.");
+    if(!exists) return alertModal("해당 번호가 없습니다.\n\n다시 시도해 주시기 바랍니다.");
 
     // 중복 방지
     const already = await get(r(`likes/${currentUid}/${toId}`));
@@ -771,9 +786,6 @@
       await update(userRef, { likeSentCount: val.likeLimit });
       return alertModal("LIKE를 모두 사용하였습니다.");
     }
-    if(val.likeSentCount >= val.likeLimit){
-      // 이번 전송이 마지막 1회였을 수 있음 → 남은 횟수 갱신 후 UI에서 잠금
-    }
 
     // 실제 LIKE 저장
     await set(r(`likes/${currentUid}/${toId}`), true);
@@ -787,12 +799,12 @@
       const payload = {status:"matched", updatedAt: Date.now()};
       await update(r(`matches/${currentUid}/${toId}`), payload);
       await update(r(`matches/${toId}/${currentUid}`), payload);
-      await alertModal(`${toId}번 사용자와 MATCH가 되었습니다! 매치 현황을 확인해 주시기 바랍니다.`);
+      await alertModal(`${toId}번 사용자와 MATCH가 되었습니다!\n\n매치 현황을 확인해 주시기 바랍니다.`);
     }else{
       await alertModal("LIKE가 전송되었습니다.");
     }
 
-    await refreshLikeCounters(); // UI 반영(0 되면 버튼 자동 잠금)
+    await refreshLikeCounters(); // 소진되면 이후 클릭 시 알림만
   }
 
   // ===== LIKE 수신 미확인 알림 처리 =====
@@ -801,11 +813,10 @@
     const snap = await get(r(`likesReceived/${currentUid}`));
     if(!snap.exists()) return;
     const recvs = snap.val();
-    // seen:false 항목 모두 팝업 후 seen:true로 변경
     for(const from of Object.keys(recvs)){
       const v = recvs[from];
       if(v && v.ok && v.seen===false){
-        await alertModal("누군가에게 LIKE를 받았습니다.","LIKE알림");
+        await alertModal("누군가에게 LIKE를 받았습니다.", "LIKE알림");
         await update(r(`likesReceived/${currentUid}/${from}`), { seen:true });
       }
     }
@@ -861,7 +872,7 @@
       wrap.querySelectorAll("[data-staff]").forEach(btn=>{
         btn.onclick = async ()=>{
           const other = btn.getAttribute("data-staff");
-          const ok = await confirmModal("직원확인이 완료되면 매치현황은 삭제됩니다. 그래도 진행하시겠습니까?",{okText:"확인",cancelText:"취소"});
+          const ok = await confirmModal("직원확인이 완료되면 매치현황은 삭제됩니다.\n\n그래도 진행하시겠습니까?",{okText:"확인",cancelText:"취소"});
           if(!ok) return;
           await withLoading(async ()=>{ await clearPairData(currentUid, other); });
           await alertModal("매치 데이터가 삭제되었습니다.");
@@ -909,7 +920,7 @@
             await update(r(`matches/${fromUid}/${currentUid}`), {status:"meeting_accepted", updatedAt: Date.now()});
             await remove(r(`meetingRequests/${currentUid}/${fromUid}`));
           });
-          await alertModal("만남이 성사되었습니다. 지금바로 만남을 위해 직원에게 문의하세요!");
+          await alertModal("만남이 성사되었습니다.\n\n지금바로 만남을 위해 직원에게 문의하세요!");
           loadMatches();
         };
       });
@@ -953,10 +964,10 @@
       const data = snap.val();
       Object.entries(data).forEach(([other, m])=>{
         if(m && m.status==="matched" && (Date.now()-m.updatedAt)<4000){
-          alertModal(`${other}번 사용자와 MATCH가 되었습니다! 매치 현황을 확인해 주시기 바랍니다.`);
+          alertModal(`${other}번 사용자와 MATCH가 되었습니다!\n\n매치 현황을 확인해 주시기 바랍니다.`);
         }
         if(m && m.status==="meeting_accepted" && (Date.now()-m.updatedAt)<4000){
-          alertModal("만남이 성사되었습니다. 지금바로 만남을 위해 직원에게 문의하세요!");
+          alertModal("만남이 성사되었습니다.\n\n지금바로 만남을 위해 직원에게 문의하세요!");
         }
       });
       if(!pages.matches.classList.contains("hidden")) loadMatches();
@@ -975,7 +986,7 @@
             await update(r(`matches/${currentUid}/${fromUid}`), {status:"meeting_accepted", updatedAt: Date.now()});
             await update(r(`matches/${fromUid}/${currentUid}`), {status:"meeting_accepted", updatedAt: Date.now()});
             await remove(r(`meetingRequests/${currentUid}/${fromUid}`));
-            await alertModal("만남이 성사되었습니다. 지금바로 만남을 위해 직원에게 문의하세요!");
+            await alertModal("만남이 성사되었습니다.\n\n지금바로 만남을 위해 직원에게 문의하세요!");
           }else if(accepted===false){
             await clearPairData(currentUid, fromUid);
           }else{
@@ -1117,7 +1128,7 @@
   $("#admin-wipe-user").onclick = async ()=>{
     const uid = $("#admin-wipe-user").dataset.uid || $("#admin-search-uid").value.trim();
     if(!uid) return alertModal("먼저 사용자 번호를 조회하세요.");
-    const ok = await confirmModal(`${uid}번 사용자의 모든 데이터를 삭제합니다. 계속할까요?`,{okText:"삭제"});
+    const ok = await confirmModal(`${uid}번 사용자의 모든 데이터를 삭제합니다.\n\n계속할까요?`,{okText:"삭제"});
     if(!ok) return;
 
     await withLoading(async ()=>{
@@ -1129,7 +1140,6 @@
         remove(r(`meetingRequests/${uid}`))
       ];
       // 양방향 정리
-      // likes: 다른 사람이 보낸 것 중 대상 uid
       const likesAll = await get(r(`likes`));
       if(likesAll.exists()){
         const all = likesAll.val();
@@ -1139,7 +1149,6 @@
           }
         }
       }
-      // likesReceived: 다른 사람이 받은 것 중 대상 uid
       const recvAll = await get(r(`likesReceived`));
       if(recvAll.exists()){
         const all = recvAll.val();
@@ -1149,7 +1158,6 @@
           }
         }
       }
-      // matches/meetingRequests 양방향
       const mAll = await get(r(`matches/${uid}`));
       if(mAll.exists()){
         const others = Object.keys(mAll.val());
@@ -1220,7 +1228,7 @@
       }
     }
     if(countMatch===0) boxMatch.innerHTML = `<div class="muted small">현재 매치된 커플이 없습니다.</div>`;
-    if(countMeet===0) boxMeet.innerHTML  = `<div class="muted small">현재 만남 성사된 커플이 없습니다.</div>`;
+    if(countMeet===0) boxMeet.innerHTML  = `<div class="muted small">현재 만넘 성사된 커플이 없습니다.</div>`;
     $("#admin-match-count").textContent = String(countMatch);
     $("#admin-meet-count").textContent  = String(countMeet);
   }
@@ -1244,7 +1252,7 @@
     const drawnSnap = await get(r(`adminDraw/${poolKey}`));
     const drawnSet = drawnSnap.exists()? new Set(drawnSnap.val()) : new Set();
     const remain = allIds.filter(id=>!drawnSet.has(id));
-    if(remain.length===0) return alertModal("더 이상 추첨할 번호가 없습니다. 초기화 후 다시 시도하세요.");
+    if(remain.length===0) return alertModal("더 이상 추첨할 번호가 없습니다.\n\n초기화 후 다시 시도하세요.");
     const pick = shuffle(remain)[0];
     drawnSet.add(pick);
     await set(r(`adminDraw/${poolKey}`), Array.from(drawnSet));
@@ -1265,11 +1273,11 @@
     renderDrawState();
   };
 
-  // --- 관리자: 패널 하단 공용 삭제 버튼들(기존 유지 + 전체 초기화 강화) ---
+  // --- 관리자: 패널 하단 공용 삭제 버튼들 ---
   $("#admin-del-user").onclick = async ()=>{
     const uid = $("#admin-del-uid").value.trim();
     if(!uid) return alertModal("삭제할 고유번호를 입력하세요.");
-    const ok = await confirmModal(`${uid}번 사용자의 모든 데이터를 삭제합니다. 계속할까요?`,{okText:"삭제"});
+    const ok = await confirmModal(`${uid}번 사용자의 모든 데이터를 삭제합니다.\n\n계속할까요?`,{okText:"삭제"});
     if(!ok) return;
 
     await withLoading(async ()=>{
@@ -1320,15 +1328,15 @@
   };
 
   $("#admin-reset").onclick = async ()=>{
-    const ok = await confirmModal("이 이벤트의 모든 계정과 데이터를 완전히 삭제합니다. 되돌릴 수 없습니다.", { okText:"초기화", cancelText:"취소", title:"전체 초기화" });
+    const ok = await confirmModal("이 이벤트의 모든 계정과 데이터를 완전히 삭제합니다.\n\n되돌릴 수 없습니다.", { okText:"초기화", cancelText:"취소", title:"전체 초기화" });
     if(!ok) return;
     await withLoading(async ()=>{
       await remove(r(`users`));
       await remove(r(`likes`));
-      await remove(r(`likesReceived`));   // ✅ 누락 없이 초기화
+      await remove(r(`likesReceived`));
       await remove(r(`matches`));
       await remove(r(`meetingRequests`));
-      await remove(r(`adminDraw`));       // ✅ 추첨 기록도 초기화
+      await remove(r(`adminDraw`));
     });
     await alertModal("전체 데이터 초기화가 완료되었습니다.");
     renderAdminMatches();
@@ -1346,4 +1354,3 @@
 </script>
 </body>
 </html>
-
