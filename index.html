@@ -22,8 +22,7 @@
     margin:0; background:linear-gradient(180deg,var(--bg),#0a142e 55%,#08102a);
     color:var(--text);
     font-family:system-ui,-apple-system,Segoe UI,Roboto,Pretendard,Apple SD Gothic Neo,Helvetica,Arial,sans-serif;
-    font-size:18px; /* 📈 기본 폰트 약 +1~2pt */
-    line-height:1.45;
+    font-size:18px; line-height:1.45;
   }
   .container{max-width:480px;margin:0 auto;padding:16px 14px 28px}
   .card{
@@ -34,18 +33,16 @@
   }
   h1,h2,h3{margin:0 0 14px}
   h1.title{
-    font-size:30px; /* 📈 */
+    font-size:30px;
     letter-spacing:.8px; text-align:center; margin-top:8px;
     background:linear-gradient(90deg,#fff,var(--yellow)); -webkit-background-clip:text; -webkit-text-fill-color:transparent;
     font-family: 'Do Hyeon', sans-serif;
   }
   .page-title{
-    text-align:center; font-size:28px; /* 📈 */
-    margin-bottom:8px;
+    text-align:center; font-size:24px; margin-bottom:8px;
     font-family: 'Do Hyeon', sans-serif;
   }
-  .subtitle{color:var(--muted); font-size:18px; /* 📈 */ text-align:center; margin-top:-6px; margin-bottom:14px}
-
+  .subtitle{color:var(--muted); font-size:18px; text-align:center; margin-top:-6px; margin-bottom:14px}
   .logo-wrap{display:flex;flex-direction:column;align-items:center;gap:10px;margin:8px 0 16px}
   .logo{
     width:240px;height:auto;object-fit:contain;display:block;border-radius:12px;border:1px dashed rgba(255,255,255,.15);background:#0b1532;
@@ -53,11 +50,10 @@
   .logo-mini{
     width:200px;height:auto;object-fit:contain;display:block;border-radius:12px;border:1px dashed rgba(255,255,255,.15);background:#0b1532;margin:0 auto 6px;
   }
-
   .row{display:flex;gap:10px}
   input,button,textarea,select{
     width:100%; padding:14px 13px; border-radius:12px;
-    border:1px solid rgba(255,255,255,.08); background:#0b1532; color:#f4f6ff; font-size:16px; /* 📈 */
+    border:1px solid rgba(255,255,255,.08); background:#0b1532; color:#f4f6ff; font-size:16px;
   }
   input::placeholder,textarea::placeholder{color:#7e8bb8}
   textarea{resize:none; min-height:90px}
@@ -72,112 +68,96 @@
   .btn-success{background:var(--success); color:#0e2824}
   .badge{
     display:inline-block; padding:2px 8px; border:1px solid rgba(255,255,255,.15);
-    border-radius:999px; font-size:18px; /* 📈 */
+    border-radius:999px; font-size:18px;
     background:#0e1f4a;
   }
-
   .grid{display:grid; grid-template-columns:1fr 1fr; gap:12px}
   .tile{
     display:flex;flex-direction:column;gap:8px;align-items:center;justify-content:center;
     padding:18px 12px; border-radius:14px; text-align:center;
-    min-height:200px; /* 📈 세로 2배 */
+    min-height:200px;
     background:#0f1f4b; border:1px solid rgba(255,255,255,.06)
   }
-  .tile strong{font-size:30px; /* 📈 */ font-family:'Do Hyeon', sans-serif;}
+  .tile strong{font-size:30px; font-family:'Do Hyeon', sans-serif;}
   .tile.like{background:#14265a; border:1px solid #29418d; box-shadow:0 0 0 2px rgba(41,65,141,.25) inset}
   .tile.like strong{ color: var(--yellow); }
 
-  .muted{color:var(--muted); font-size:16px} /* 📈 */
-  .small{font-size:14px} /* 📈 */
+  .muted{color:var(--muted); font-size:16px}
+  .small{font-size:14px}
   .center{text-align:center}
   .spacer{height:8px}
   .footerbar{
-    margin-top:16px; display:flex; align-items:center; justify-content:space-between; gap:10px; color:var(--muted); font-size:14px /* 📈 */
+    margin-top:16px; display:flex; align-items:center; justify-content:space-between; gap:10px; color:var(--muted); font-size:14px
   }
   .list{display:flex;flex-direction:column; gap:10px}
   .list-item{
     display:flex; align-items:center; gap:10px;
     padding:12px; border-radius:12px; background:#0d1a3e; border:1px solid rgba(255,255,255,.06)
   }
-/* 검색 행: 한 줄 정렬 + 간격 */
-.search-row{
-  display:flex;
-  align-items:center;
-  gap:8px;
-  margin:6px 0 10px;
-}
 
-/* 🔹 입력창을 넓게: flex=1 로 남는 공간 전부 차지 */
-#browse-search-input{
-  flex:1 1 auto;           /* 남는 폭 대부분을 가져감 */
-  min-width:0;             /* flex 수축 시 내용 넘침 방지 */
-  padding:12px 12px;
-  font-size:16px;
-  border-radius:10px;
-}
+  /* 검색 행 */
+  .search-row{ display:flex; align-items:center; gap:8px; margin:6px 0 10px; }
+  #browse-search-input{ flex:1 1 auto; min-width:0; padding:12px 12px; font-size:16px; border-radius:10px;}
+  #browse-search-btn,#browse-search-clear{ flex:0 0 88px; padding:10px 0; text-align:center; font-size:15px; border-radius:10px;}
 
-/* 🔹 버튼은 좁게: 고정(or 최소) 폭 + 줄어들지 않게 */
-#browse-search-btn,
-#browse-search-clear{
-  flex:0 0 88px;           /* 가로 88px 고정 (원하면 72~96px로 조정) */
-  padding:10px 0;
-  text-align:center;
-  font-size:15px;
-  border-radius:10px;
-}
-  
   .hidden{display:none !important}
-
   .li-content{ flex: 2; min-width:0; }
   .li-actions{ flex: 1; display:flex; justify-content:flex-end; align-items:stretch; }
   .li-actions .btn-like{ width:100%; }
 
-  /* ===== MODAL: 1.5x 확대 + 가독성 ===== */
+  /* 모달 */
   .modal-backdrop{
     position:fixed; inset:0; background:rgba(0,0,0,.55); display:none; align-items:center; justify-content:center; z-index:50
   }
   .modal{
-    width:90%; max-width:480px; /* 약간 확대 */
+    width:90%; max-width:480px;
     background:#0d1534; border:1px solid rgba(255,255,255,.1); border-radius:16px; padding:18px;
-    font-size:1.5em; line-height:1.4; /* 📈 전체 1.5배 */
+    font-size:1.5em; line-height:1.4;
   }
-  .modal h3{margin:0 0 10px; font-size:1.2em;} /* 제목도 큼직하게 */
+  .modal h3{margin:0 0 10px; font-size:1.2em;}
   .modal .actions{display:flex; gap:12px; margin-top:14px}
-   #modal-title, #modal-message { text-align: center; }
-   #modal-message {
-     font-size: 18px; line-height: 1.5;}
-  /* ===== 로딩 오버레이 ===== */
-  .loading-backdrop{
-    position:fixed; inset:0; background:rgba(0,0,0,.35);
-    display:none; align-items:center; justify-content:center; z-index:60;
-  }
-  .loading-box{
-    background:#0d1534; border:1px solid rgba(255,255,255,.12);
-    padding:14px 16px; border-radius:12px; font-size:16px;
-    display:flex; align-items:center; gap:10px;
-  }
-  .spinner{
-    width:16px; height:16px; border:3px solid rgba(255,255,255,.2); border-top-color:#fff;
-    border-radius:50%; animation:spin 1s linear infinite;
-  }
+  #modal-title, #modal-message { text-align: center; }
+  #modal-message { font-size: 18px; line-height: 1.5; white-space:pre-line; }
+
+  /* 로딩 */
+  .loading-backdrop{ position:fixed; inset:0; background:rgba(0,0,0,.35); display:none; align-items:center; justify-content:center; z-index:60; }
+  .loading-box{ background:#0d1534; border:1px solid rgba(255,255,255,.12); padding:14px 16px; border-radius:12px; font-size:16px; display:flex; align-items:center; gap:10px; }
+  .spinner{ width:16px; height:16px; border:3px solid rgba(255,255,255,.2); border-top-color:#fff; border-radius:50%; animation:spin 1s linear infinite; }
   @keyframes spin{to{transform:rotate(360deg)}}
 
-  /* ===== BIG LIKE COUNTER ===== */
-  .counter-banner{
-    margin:6px 0 12px; /* 약간 여백 확대 */
-    padding:14px 16px;
-    border-radius:14px;
-    background:#09163a;
-    border:1px solid rgba(255,255,255,.08);
-    text-align:center;
-  }
-  .counter-banner .num{
-    font-size:28px; /* 📈 */
-    font-weight:800; letter-spacing:.5px;
-    font-family:'Do Hyeon', sans-serif;
-  }
+  /* LIKE 카운터 */
+  .counter-banner{ margin:6px 0 12px; padding:14px 16px; border-radius:14px; background:#09163a; border:1px solid rgba(255,255,255,.08); text-align:center; }
+  .counter-banner .num{ font-size:28px; font-weight:800; letter-spacing:.5px; font-family:'Do Hyeon', sans-serif; }
   .counter-banner .cap{display:block; margin-top:6px; font-size:16px; color:var(--muted)}
   .counter-banner.exhausted{background:#2a0e12; border-color:#3b1318}
+
+  /* ===== 메시지함 전용 스타일 ===== */
+  .menu-msg-btn{ position:relative; width:100%; margin:12px 0 0; }
+  .menu-msg-badge{
+    position:absolute; top:-8px; right:-8px;
+    background:var(--danger); color:#fff; border-radius:999px; padding:2px 8px; font-size:12px; border:2px solid #0d1534;
+    min-width:20px; text-align:center;
+  }
+  /* 메시지 리스트 */
+  .chat-list .list-item{ justify-content:space-between; }
+  .chat-list .list-item .li-actions{ flex:0 0 auto; }
+  /* 채팅창 */
+  .chat-wrap{ display:flex; flex-direction:column; gap:10px; height:60vh; }
+  .chat-log{
+    flex:1 1 auto; overflow:auto; padding:10px; border-radius:12px; background:#0c1738; border:1px solid rgba(255,255,255,.06);
+    display:flex; flex-direction:column; gap:8px;
+  }
+  .bubble{
+    max-width:80%; padding:10px 12px; border-radius:12px; font-size:16px; line-height:1.35;
+    display:inline-block; word-break:break-word;
+  }
+  .from-me{ align-self:flex-end; background:#1a2b63; border:1px solid #2e4aa7; }
+  .from-other{ align-self:flex-start; background:#13265a; border:1px solid rgba(255,255,255,.08); }
+  .meta{ font-size:11px; color:var(--muted); margin-top:4px; text-align:right; }
+  .chat-input-row{ display:flex; gap:8px; align-items:center; }
+  #chat-text{ flex:1 1 auto; min-height:48px; max-height:96px; }
+  .char-count{ font-size:12px; color:var(--muted); text-align:right; margin-top:4px; }
+
 </style>
 </head>
 <body>
@@ -215,11 +195,11 @@
   <section id="page-menu" class="card hidden">
     <div class="grid">
       <button class="tile" id="btn-profile">
-        <strong>👤<br>프로필<br>설정하기</strong>
+        <strong>프로필<br>설정하기</strong>
         <span class="muted small">자기소개·이상형</span>
       </button>
       <button class="tile" id="btn-browse">
-        <strong>👀<br>다른사람<br>구경하기</strong>
+        <strong>다른사람<br>구경하기</strong>
         <span class="muted small">번호순 프로필</span>
       </button>
       <button class="tile like" id="btn-like">
@@ -229,6 +209,14 @@
       <button class="tile" id="btn-matches">
         <strong>나의<br>MATCH<br>💛</strong>
         <span class="muted small">만남 요청/수락</span>
+      </button>
+    </div>
+
+    <!-- ✅ 메뉴판 아래~로그아웃 사이: 메세지함 버튼 -->
+    <div style="margin-top:12px;">
+      <button id="btn-messages" class="btn menu-msg-btn">
+        메세지함
+        <span id="menu-msg-badge" class="menu-msg-badge hidden">0</span>
       </button>
     </div>
 
@@ -243,7 +231,7 @@
   <!-- ===== [PAGE] 프로필 설정하기 ===== -->
   <section id="page-profile" class="card hidden">
     <img class="logo-mini" id="logo-mini-profile" alt="로고" />
-    <h2 class="page-title">👤프로필 설정하기</h2>
+    <h2 class="page-title">프로필 설정하기</h2>
 
     <p class="muted">내 고유번호: <span class="badge" id="me-uid-profile"></span><br>*민감하거나 불쾌감을 줄 수 있는 내용 작성은 자제바랍니다.</p>
     <textarea id="intro" maxlength="50" placeholder="자기소개 (최대 50자)  ex. 오늘 번개 구해요."></textarea>
@@ -266,15 +254,13 @@
   <!-- ===== [PAGE] 다른사람 구경하기 ===== -->
   <section id="page-browse" class="card hidden">
     <img class="logo-mini" id="logo-mini-browse" alt="로고" />
-    <h2 class="page-title">다른사람 구경하기👀</h2>
+    <h2 class="page-title">다른사람 구경하기</h2>
 
-    <!-- BIG counter -->
     <div id="like-counter-browse" class="counter-banner">
       <span class="num" id="like-remaining-browse-num">남은 LIKE: 0 / 0</span>
-      <span class="cap">남은 횟수가 0이이면 LIKE를 보낼 수 없습니다.</span>
+      <span class="cap">남은 횟수가 0이면 LIKE를 보낼 수 없습니다.</span>
     </div>
 
-    <!-- 검색바 -->
     <div class="search-row">
       <input id="browse-search-input" inputmode="numeric" pattern="[0-9]*" placeholder="번호로 검색" />
       <button id="browse-search-btn" class="btn small">검색</button>
@@ -296,7 +282,6 @@
     <img class="logo-mini" id="logo-mini-like" alt="로고" />
     <h2 class="page-title">👍LIKE 보내기</h2>
 
-    <!-- BIG counter -->
     <div id="like-counter-like" class="counter-banner">
       <span class="num" id="like-remaining-like-num">남은 LIKE: 0 / 0</span>
       <span class="cap">남은 횟수가 0이면 LIKE를 보낼 수 없습니다.</span>
@@ -330,6 +315,37 @@
     <div class="footerbar">
       <button id="to-menu4" class="btn small">뒤로가기 ↩️</button>
       <button id="logout-btn4" class="btn small">로그아웃</button>
+    </div>
+  </section>
+
+  <!-- ===== [PAGE] 메세지함 (목록) ===== -->
+  <section id="page-messages" class="card hidden">
+    <img class="logo-mini" id="logo-mini-messages" alt="로고" />
+    <h2 class="page-title">메세지함</h2>
+    <div id="messages-list" class="list chat-list"></div>
+    <p class="small muted center" id="msg-note" style="margin-top:8px;">* 매치된 사용자와만 대화할 수 있습니다.</p>
+    <div class="footerbar">
+      <button id="to-menu-msg" class="btn small">뒤로가기 ↩️</button>
+      <button id="logout-btn5" class="btn small">로그아웃</button>
+    </div>
+  </section>
+
+  <!-- ===== [PAGE] 채팅(대화창) ===== -->
+  <section id="page-chat" class="card hidden">
+    <h2 class="page-title"><span id="chat-title"></span>번과의 대화</h2>
+    <div class="chat-wrap">
+      <div id="chat-log" class="chat-log"></div>
+      <div>
+        <div class="chat-input-row">
+          <textarea id="chat-text" maxlength="20" placeholder="메시지(최대 20자)"></textarea>
+          <button id="chat-send" class="btn-primary">전송</button>
+        </div>
+        <div class="char-count"><span id="char-left">20</span>자 남음</div>
+      </div>
+    </div>
+    <div class="footerbar">
+      <button id="chat-back" class="btn small">뒤로가기 ↩️</button>
+      <button id="logout-btn6" class="btn small">로그아웃</button>
     </div>
   </section>
 
@@ -416,7 +432,7 @@
     <!-- 랜덤 번호 뽑기 -->
     <div id="admin-panel-draw" class="hidden" style="margin-top:12px;">
       <h3>랜덤 번호 뽑기</h3>
-      <p class="small muted">현재 등록된 번호들 중에서 중복 없이 추첨됩니다.</p>
+      <p class="small muted">현재 등록된 번호들 중에서 중복 없이 각각의 풀에서 추첨됩니다.</p>
       <div class="row" style="margin-top:8px;">
         <button id="draw-host" class="btn-primary">🎤 진행자용<br>랜덤번호 뽑기</button>
         <button id="draw-guest" class="btn-primary">🎉 참가자용<br>랜덤번호 뽑기</button>
@@ -440,7 +456,7 @@
 <div id="modal" class="modal-backdrop">
   <div class="modal">
     <h3 id="modal-title">알림</h3>
-    <div id="modal-message" class="muted" style="white-space:pre-line"></div>
+    <div id="modal-message" class="muted"></div>
     <div class="actions" id="modal-actions">
       <button id="modal-ok" class="btn-primary">확인</button>
     </div>
@@ -489,6 +505,11 @@
   let likeRemain = 0;
   let likeLimit = 0;
 
+  // 메시지 상태
+  let chatTarget = null; // 현재 대화 상대 uid
+  let chatOff = null;    // 채팅 실시간 off 함수
+  let unreadOff = null;  // 안읽음 카운트 off 함수
+
   // ===================== DOM 헬퍼 =====================
   const $ = s => document.querySelector(s);
   function show(el){
@@ -514,6 +535,8 @@
     browse: $("#page-browse"),
     like: $("#page-like"),
     matches: $("#page-matches"),
+    messages: $("#page-messages"),
+    chat: $("#page-chat"),
     adminGate: $("#page-admin-gate"),
     admin: $("#page-admin")
   };
@@ -534,7 +557,7 @@
     if (loadingEl) hide(loadingEl);
     return new Promise(res=>{
       modalTitle.textContent = title;
-      modalMsg.textContent = String(message).replace(/\n{3,}/g, "\n\n"); // 줄바꿈 과도 시 정리
+      modalMsg.textContent = String(message).replace(/\n{3,}/g, "\n\n");
       modalActions.innerHTML = `<button id="modal-ok" class="btn-primary">확인</button>`;
       $("#modal-ok").onclick = ()=>{ hide(modal); res(true); };
       show(modal);
@@ -606,7 +629,6 @@
     const exhausted = (remain<=0);
     [b1,b2].forEach(b=>{ if(!b) return; b.classList.toggle("exhausted", exhausted); });
 
-    // ❗이제 비활성화하지 않음: 클릭 시 알림만 뜨게 핸들러에서 제어
     const sendBtn = $("#send-like-btn");
     if(sendBtn){ sendBtn.title = exhausted ? "LIKE를 모두 사용하였습니다." : ""; }
 
@@ -617,7 +639,7 @@
   async function refreshLikeCounters(){
     if(!currentUid) return;
     const u = await getUser(currentUid);
-    const limit = (u && typeof u.likeLimit==="number") ? u.likeLimit : 7;
+    const limit = (u && typeof u.likeLimit==="number") ? u.likeLimit : 5;
     const sentCount = (u && typeof u.likeSentCount==="number") ? u.likeSentCount : await countLikesSent(currentUid);
     const remain = Math.max(0, limit - sentCount);
     setLikeUI(remain, limit);
@@ -651,7 +673,7 @@
         if(!uid || !/^\d+$/.test(uid)) return alertModal("고유번호는 숫자여야 합니다.");
         if(!/^\d{4}$/.test(pin)) return alertModal("비밀번호는 숫자 4자리여야 합니다.");
         if(await userExists(uid)) return alertModal("이미 존재하는 번호입니다.\n\n로그인해 주세요.");
-        await set(r(`users/${uid}`), { pin, intro:"", ideal:"", createdAt: Date.now(), likeLimit:7, likeSentCount:0 });
+        await set(r(`users/${uid}`), { pin, intro:"", ideal:"", createdAt: Date.now(), likeLimit:5, likeSentCount:0 });
         await alertModal("계정이 생성 되었습니다.\n\n로그인 후 이용해 주세요.");
       }catch(err){
         console.error(err);
@@ -680,13 +702,14 @@
 
         // 누락 필드 보정
         const patch = {};
-        if(typeof user.likeLimit!=="number") patch.likeLimit = 7;
+        if(typeof user.likeLimit!=="number") patch.likeLimit = 5;
         if(typeof user.likeSentCount!=="number"){ patch.likeSentCount = await countLikesSent(currentUid); }
         if(Object.keys(patch).length) await update(r(`users/${currentUid}`), patch);
 
         attachRealtimeListeners();
         await refreshLikeCounters();
         await checkUnseenLikes();   // ✅ 로그인 직후 미확인 LIKE 알림
+        await refreshMenuUnreadBadge(); // ✅ 로그인 직후 메시지 뱃지
         go("menu");
       }catch(err){
         console.error(err);
@@ -701,18 +724,19 @@
     currentUid = null; currentPin = null;
     go("welcome");
   }
-  ["#logout-btn","#logout-btn1","#logout-btn2","#logout-btn3","#logout-btn4"].forEach(sel=>{
+  ["#logout-btn","#logout-btn1","#logout-btn2","#logout-btn3","#logout-btn4","#logout-btn5","#logout-btn6"].forEach(sel=>{
     const el = $(sel); if(el) el.onclick = doLogout;
   });
 
   // 메뉴 이동
-  ["#to-menu1","#to-menu2","#to-menu3","#to-menu4"].forEach(sel=>{
+  ["#to-menu1","#to-menu2","#to-menu3","#to-menu4","#to-menu-msg"].forEach(sel=>{
     const el = $(sel); if(el) el.onclick = ()=> go("menu");
   });
   $("#btn-profile").onclick = ()=>{ $("#me-uid-profile").textContent = currentUid; loadProfile(); go("profile"); };
   $("#btn-browse").onclick = async ()=>{ await loadBrowse(); await refreshLikeCounters(); go("browse"); };
   $("#btn-like").onclick   = async ()=>{ $("#from-like").value=`내 번호: ${currentUid}`; $("#to-like").value=""; await refreshLikeCounters(); go("like"); };
   $("#btn-matches").onclick= ()=>{ loadMatches(); go("matches"); };
+  $("#btn-messages").onclick= ()=>{ loadMessageThreads(); go("messages"); };
 
   // 프로필 저장/취소
   async function loadProfile(){
@@ -761,7 +785,7 @@
       wrap.appendChild(item);
     });
 
-    // 버튼 핸들러 (소진 시 알림만)
+    // 버튼 핸들러
     wrap.querySelectorAll("[data-like]").forEach(btn=>{
       const toId = btn.getAttribute("data-like");
       btn.onclick = ()=> {
@@ -780,7 +804,7 @@
 
   // ===== LIKE 보내기 =====
   $("#send-like-btn").onclick = async ()=>{
-    if(likeRemain<=0){ return alertModal("LIKE를 모두 사용하였습니다."); } // 실행 차단
+    if(likeRemain<=0){ return alertModal("LIKE를 모두 사용하였습니다."); }
     const toId = $("#to-like").value.trim();
     if(!/^\d+$/.test(toId)) return alertModal("상대방 번호를 숫자로 입력하세요.");
     await withLoading(async ()=>{ await sendLike(toId); });
@@ -788,7 +812,7 @@
 
   async function sendLike(toId){
     if(!currentUid) return;
-    if(likeRemain<=0) return alertModal("LIKE를 모두 사용하였습니다."); // 재확인
+    if(likeRemain<=0) return alertModal("LIKE를 모두 사용하였습니다.");
     if(toId===currentUid) return alertModal("본인에게는 보낼 수 없습니다.");
     const exists = await userExists(toId);
     if(!exists) return alertModal("해당 번호가 없습니다.\n\n다시 시도해 주시기 바랍니다.");
@@ -796,21 +820,21 @@
     // 중복 방지
     const already = await get(r(`likes/${currentUid}/${toId}`));
     if(already.exists()){
-      return alertModal("이미 이 사용자에게 LIKE를 보냈습니다.");
+      return alertModal("이미 이 사용자에게<br>LIKE를 보냈습니다.");
     }
 
     // 제한 체크 & 증가 (트랜잭션)
     const userRef = r(`users/${currentUid}`);
     const ok = await runTransaction(userRef, (u)=>{
       if(!u) return u;
-      if(typeof u.likeLimit!=="number") u.likeLimit = 7;
+      if(typeof u.likeLimit!=="number") u.likeLimit = 5;
       if(typeof u.likeSentCount!=="number") u.likeSentCount = 0;
-      if(u.likeSentCount >= u.likeLimit){ return u; } // 더 이상 불가
+      if(u.likeSentCount >= u.likeLimit){ return u; }
       u.likeSentCount += 1;
       return u;
     });
     const val = ok && ok.snapshot && ok.snapshot.val();
-    if(!val) return alertModal("오류가 발생했습니다. 다시 시도해 주세요.");
+    if(!val) return alertModal("오류가 발생했습니다.<br>다시 시도해 주세요.");
     if(val.likeSentCount > val.likeLimit){
       await update(userRef, { likeSentCount: val.likeLimit });
       return alertModal("LIKE를 모두 사용하였습니다.");
@@ -833,7 +857,7 @@
       await alertModal("LIKE가 전송되었습니다.");
     }
 
-    await refreshLikeCounters(); // 소진되면 이후 클릭 시 알림만
+    await refreshLikeCounters();
   }
 
   // ===== LIKE 수신 미확인 알림 처리 =====
@@ -889,11 +913,7 @@
       wrap.querySelectorAll("[data-meet]").forEach(btn=>{
         btn.onclick = async ()=>{
           const target = btn.getAttribute("data-meet");
-          await withLoading(async ()=>{
-            await set(r(`meetingRequests/${target}/${currentUid}`), {status:"pending", updatedAt: Date.now()});
-            await update(r(`matches/${currentUid}/${target}`), {status:"meeting_requested", updatedAt: Date.now()});
-          });
-          await alertModal("만남 요청이 전송되었습니다.");
+          await requestMeeting(target);
           loadMatches();
         };
       });
@@ -949,7 +969,7 @@
             await update(r(`matches/${fromUid}/${currentUid}`), {status:"meeting_accepted", updatedAt: Date.now()});
             await remove(r(`meetingRequests/${currentUid}/${fromUid}`));
           });
-          await alertModal("만남이 성사되었습니다.\n👉 💛 👈\n지금바로 만남을 위해 직원에게 문의하세요!");
+          await alertModal("만남이 성사되었습니다.\n👉 💛 👈\n지금바로 만남을 위해<br>직원에게 문의하세요!");
           loadMatches();
         };
       });
@@ -976,9 +996,23 @@
       remove(r(`likesReceived/${a}/${b}`)),
       remove(r(`likesReceived/${b}/${a}`)),
       remove(r(`meetingRequests/${a}/${b}`)),
-      remove(r(`meetingRequests/${b}/${a}`))
+      remove(r(`meetingRequests/${b}/${a}`)),
+      // 메시지 관련 데이터도 정리
+      remove(r(`messages/${pairKey(a,b)}`)),
+      remove(r(`messageCounts/${a}/${b}`)),
+      remove(r(`messageCounts/${b}/${a}`)),
+      remove(r(`messagesUnread/${a}/${b}`)),
+      remove(r(`messagesUnread/${b}/${a}`))
     ];
     await Promise.all(ops);
+  }
+
+  async function requestMeeting(target){
+    await withLoading(async ()=>{
+      await set(r(`meetingRequests/${target}/${currentUid}`), {status:"pending", updatedAt: Date.now()});
+      await update(r(`matches/${currentUid}/${target}`), {status:"meeting_requested", updatedAt: Date.now()});
+    });
+    await alertModal("만남 요청이 전송되었습니다.");
   }
 
   // ===================== 실시간 리스너 =====================
@@ -993,13 +1027,16 @@
       const data = snap.val();
       Object.entries(data).forEach(([other, m])=>{
         if(m && m.status==="matched" && (Date.now()-m.updatedAt)<4000){
-          alertModal(`${other}번 사용자와 MATCH가 되었습니다!\n⭐ ⭐ ⭐ ⭐ ⭐\n매치 현황을 확인해 주시기 바랍니다.`);
+          alertModal(`${other}번 사용자와<br>MATCH가 되었습니다!\n\n매치 현황을 확인해 주시기 바랍니다.`);
         }
         if(m && m.status==="meeting_accepted" && (Date.now()-m.updatedAt)<4000){
           alertModal("만남이 성사되었습니다.\n👉 💛 👈\n지금바로 만남을 위해 직원에게 문의하세요!");
         }
       });
       if(!pages.matches.classList.contains("hidden")) loadMatches();
+      // 매치가 변하면 메시지 목록/뱃지도 갱신
+      if(!pages.messages.classList.contains("hidden")) loadMessageThreads();
+      refreshMenuUnreadBadge();
     });
     detachFns.push(()=>off1());
 
@@ -1015,7 +1052,7 @@
             await update(r(`matches/${currentUid}/${fromUid}`), {status:"meeting_accepted", updatedAt: Date.now()});
             await update(r(`matches/${fromUid}/${currentUid}`), {status:"meeting_accepted", updatedAt: Date.now()});
             await remove(r(`meetingRequests/${currentUid}/${fromUid}`));
-            await alertModal("만남이 성사되었습니다.\n👉💛👈\n지금바로 만남을 위해 직원에게 문의하세요!");
+            await alertModal("만남이 성사되었습니다.\n👉💛👈\n지금바로 만남을 위해<br>직원에게 문의하세요!");
           }else if(accepted===false){
             await clearPairData(currentUid, fromUid);
           }else{
@@ -1034,22 +1071,247 @@
       for(const from of Object.keys(recvs)){
         const v = recvs[from];
         if(v && v.ok && v.seen===false){
-          await alertModal("누군가에게 LIKE👍를 받았습니다.", "❤️LIKE 알림❤️");
+          await alertModal("누군가에게 LIKE를 받았습니다.","LIKE 알림");
           await update(r(`likesReceived/${currentUid}/${from}`), { seen:true });
         }
       }
     });
     detachFns.push(()=>off3());
 
-    updateConnectionLabels();
+    // 메시지 안읽음 카운트(뱃지)
+    unreadOff = onValue(r(`messagesUnread/${currentUid}`), snap=>{
+      const data = snap.exists()? snap.val() : {};
+      const total = Object.values(data).reduce((a,b)=>a + (typeof b==='number'? b : 0), 0);
+      setMenuUnreadBadge(total);
+      // 목록 페이지에서 UI 갱신
+      if(!pages.messages.classList.contains("hidden")) loadMessageThreads();
+    });
+    detachFns.push(()=>unreadOff && unreadOff());
   }
   function detachRealtimeListeners(){
     detachFns.forEach(fn=>{ try{fn();}catch{} });
     detachFns = [];
+    if(typeof unreadOff === "function"){ try{ unreadOff(); }catch{} }
+    if(typeof chatOff === "function"){ try{ chatOff(); }catch{} }
+    unreadOff = null; chatOff = null;
     updateConnectionLabels();
   }
 
-  // ===================== 관리자 =====================
+  // ===================== 페이지 전환 =====================
+  function go(id){
+    // 채팅 페이지를 떠날 때 리스너 해제
+    if(id!=="chat" && typeof chatOff === "function"){ try{ chatOff(); }catch{} chatOff = null; }
+    Object.values(pages).forEach(hide);
+    show(pages[id]);
+    updateConnectionLabels();
+  }
+
+  // ======== 메시지함 로직 ========
+  const MAX_MSG_PER_PAIR = 10;   // 인당 최대 10회
+  const MAX_LEN = 20;            // 20자 제한
+
+  const pairKey = (a,b)=> {
+    const x = parseInt(a,10), y = parseInt(b,10);
+    return (Math.min(x,y))+"-"+(Math.max(x,y));
+  };
+
+  async function getMatchedOnlyList(){
+    const snap = await get(r(`matches/${currentUid}`));
+    if(!snap.exists()) return [];
+    const list = snap.val();
+    return Object.keys(list).filter(uid=> list[uid] && list[uid].status === "matched")
+                            .sort((a,b)=>Number(a)-Number(b));
+  }
+
+  async function loadMessageThreads(){
+    const box = $("#messages-list");
+    box.innerHTML = "";
+    const matched = await getMatchedOnlyList();
+    if(matched.length===0){
+      box.innerHTML = `<div class="muted small">매치된 사용자가 없습니다.</div>`;
+      return;
+    }
+
+    // 안읽음 카운트
+    const unreadSnap = await get(r(`messagesUnread/${currentUid}`));
+    const unread = unreadSnap.exists()? unreadSnap.val() : {};
+
+    matched.forEach(other=>{
+      const item = document.createElement("div");
+      const count = unread && typeof unread[other]==='number' ? unread[other] : 0;
+      const badge = count>0 ? `<span class="badge" style="background:#6b1a1a;border-color:#933;">${count}개 새 메세지</span>` : `<span class="small muted">새 메세지 없음</span>`;
+      item.className = "list-item";
+      item.innerHTML = `
+        <div class="li-content">
+          <div><strong>${other}번</strong></div>
+          <div class="small" style="margin-top:4px;">${badge}</div>
+        </div>
+        <div class="li-actions">
+          <button class="btn-primary small" data-chat="${other}">대화하기</button>
+        </div>
+      `;
+      box.appendChild(item);
+    });
+
+    box.querySelectorAll("[data-chat]").forEach(btn=>{
+      btn.onclick = ()=> openChat(btn.getAttribute("data-chat"));
+    });
+  }
+
+  function setMenuUnreadBadge(total){
+    const badge = $("#menu-msg-badge");
+    if(!badge) return;
+    if(total>0){ badge.textContent = String(total); badge.classList.remove("hidden"); }
+    else{ badge.classList.add("hidden"); }
+  }
+
+  async function refreshMenuUnreadBadge(){
+    const snap = await get(r(`messagesUnread/${currentUid}`));
+    const data = snap.exists()? snap.val() : {};
+    const total = Object.values(data).reduce((a,b)=>a + (typeof b==='number'? b : 0), 0);
+    setMenuUnreadBadge(total);
+  }
+
+  async function ensureMatchedOrBlock(other){
+    const snap = await get(r(`matches/${currentUid}/${other}`));
+    if(!snap.exists() || snap.val().status!=="matched"){
+      await alertModal("매치된 사용자와만 대화할 수 있습니다.");
+      return false;
+    }
+    return true;
+  }
+
+  // 채팅 열기
+  async function openChat(other){
+    if(!(await ensureMatchedOrBlock(other))) return;
+    chatTarget = other;
+    $("#chat-title").textContent = other;
+    $("#chat-text").value = "";
+    $("#char-left").textContent = String(MAX_LEN);
+    go("chat");
+    // 안읽음 0으로
+    await update(r(`messagesUnread/${currentUid}/${other}`), 0);
+    // 읽음처리 및 로그 렌더
+    attachChatListener(other);
+  }
+
+  function attachChatListener(other){
+    if(typeof chatOff === "function"){ try{ chatOff(); }catch{} }
+    const key = pairKey(currentUid, other);
+    const logBox = $("#chat-log");
+    const qRef = r(`messages/${key}`);
+    chatOff = onValue(qRef, async snap=>{
+      const data = snap.exists()? snap.val() : {};
+      const entries = Object.keys(data).sort((a,b)=> Number(a)-Number(b)).map(ts=> ({ts, ...data[ts]}));
+      logBox.innerHTML = "";
+      entries.forEach(m=>{
+        const mine = (m.from === currentUid);
+        const div = document.createElement("div");
+        div.innerHTML = `
+          <div class="bubble ${mine?'from-me':'from-other'}">${escapeHTML(m.text||"")}</div>
+          <div class="meta">${formatTime(new Date(+m.ts))}${mine? (m.read?' · 읽음':'') : ''}</div>
+        `;
+        logBox.appendChild(div);
+      });
+      logBox.scrollTop = logBox.scrollHeight;
+
+      // 내가 받은 쪽 메시지 읽음표시로 업데이트
+      const updates = {};
+      entries.forEach(m=>{
+        if(m.to===currentUid && !m.read){ updates[m.ts+"/read"] = true; }
+      });
+      if(Object.keys(updates).length){
+        await update(r(`messages/${key}`), updates);
+      }
+      // 내 안읽음 카운트 0으로
+      await update(r(`messagesUnread/${currentUid}/${other}`), 0);
+    });
+  }
+
+  // 메시지 전송
+  $("#chat-send").onclick = async ()=>{
+    if(!chatTarget) return;
+    const text = $("#chat-text").value.trim();
+    if(text.length===0) return;
+    if(text.length>MAX_LEN) return alertModal(`메시지는 최대 ${MAX_LEN}자까지 가능합니다.`);
+
+    // 매치 상태 확인
+    if(!(await ensureMatchedOrBlock(chatTarget))) return;
+
+    // 전송 제한(인당 10회)
+    const cntRef = r(`messageCounts/${currentUid}/${chatTarget}`);
+    const ok = await runTransaction(cntRef, (v)=>{
+      const n = typeof v==='number'? v : 0;
+      if(n >= MAX_MSG_PER_PAIR) return n; // 증가하지 않음
+      return n+1;
+    });
+    const after = ok && ok.snapshot ? ok.snapshot.val() : 0;
+    if(after > MAX_MSG_PER_PAIR){
+      // 롤백 보정
+      await update(cntRef, MAX_MSG_PER_PAIR);
+    }
+    if(after >= MAX_MSG_PER_PAIR){
+      // 한도 소진 안내 + 만남 요청 버튼
+      await messageLimitPopup(chatTarget);
+      return;
+    }
+
+    // 실제 메시지 저장
+    const ts = Date.now();
+    const key = pairKey(currentUid, chatTarget);
+    const payload = { from: currentUid, to: chatTarget, text, read:false };
+    await set(r(`messages/${key}/${ts}`), payload);
+
+    // 수신자 안읽음 +1
+    await runTransaction(r(`messagesUnread/${chatTarget}/${currentUid}`), (v)=>{
+      const n = typeof v==='number'? v : 0; return n+1;
+    });
+
+    // UI
+    $("#chat-text").value = "";
+    $("#char-left").textContent = String(MAX_LEN);
+  };
+
+  // 글자수 카운트
+  $("#chat-text").addEventListener("input", ()=>{
+    const left = MAX_LEN - $("#chat-text").value.length;
+    $("#char-left").textContent = String(Math.max(0,left));
+  });
+
+  $("#chat-back").onclick = ()=>{
+    chatTarget = null;
+    if(typeof chatOff === "function"){ try{ chatOff(); }catch{} chatOff = null; }
+    loadMessageThreads();
+    go("messages");
+  };
+
+  // 한도 소진 팝업
+  async function messageLimitPopup(other){
+    if(!(await ensureMatchedOrBlock(other))) return;
+    if (loadingEl) hide(loadingEl);
+    return new Promise(res=>{
+      modalTitle.textContent = "알림";
+      modalMsg.textContent = "더 많은 대화를 원하시면 만남을 요청하세요!";
+      modalActions.innerHTML = `
+        <button id="modal-cancel" class="btn">닫기</button>
+        <button id="modal-ok" class="btn-primary">만남 요청하기</button>
+      `;
+      $("#modal-cancel").onclick = ()=>{ hide(modal); res(false); };
+      $("#modal-ok").onclick = async ()=>{ hide(modal); await requestMeeting(other); res(true); };
+      show(modal);
+    });
+  }
+
+  // ===== 유틸 =====
+  function escapeHTML(s){
+    return String(s).replace(/[&<>"']/g, m=> ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));
+  }
+  function formatTime(d){
+    const pad = n=> (n<10? "0"+n : ""+n);
+    return `${pad(d.getHours())}:${pad(d.getMinutes())}`;
+  }
+
+  // ===================== 관리자 등 기존 리스너들 유지 =====================
   $("#admin-entry-btn").onclick = ()=> go("adminGate");
   $("#admin-cancel").onclick = ()=> go("welcome");
   $("#admin-login").onclick = ()=>{
@@ -1076,7 +1338,6 @@
     if(adminLoggedIn) setAdminTab(currentAdminTab);
   };
 
-  // --- 관리자 탭 ---
   let currentAdminTab = "search";
   function setAdminTab(tab){
     currentAdminTab = tab;
@@ -1090,7 +1351,6 @@
   $("#admin-tab-matches").onclick = ()=> setAdminTab("matches");
   $("#admin-tab-draw").onclick = ()=> setAdminTab("draw");
 
-  // --- 관리자: 사용자 검색/관리 ---
   $("#admin-search-btn").onclick = async ()=>{
     const uid = $("#admin-search-uid").value.trim();
     if(!uid || !/^\d+$/.test(uid)) return alertModal("고유번호를 올바르게 입력하세요.");
@@ -1102,11 +1362,10 @@
     }
 
     $("#admin-user-summary").textContent =
-      `${uid}번 사용자 · LIKE 제한: ${(typeof u.likeLimit==="number")?u.likeLimit:7} · 보낸횟수: ${(typeof u.likeSentCount==="number")?u.likeSentCount:await countLikesSent(uid)}`;
+      `${uid}번 사용자 · LIKE 제한: ${(typeof u.likeLimit==="number")?u.likeLimit:5} · 보낸횟수: ${(typeof u.likeSentCount==="number")?u.likeSentCount:await countLikesSent(uid)}`;
 
-    $("#admin-like-limit").value = (typeof u.likeLimit==="number")?u.likeLimit:7;
+    $("#admin-like-limit").value = (typeof u.likeLimit==="number")?u.likeLimit:5;
 
-    // 보낸 LIKE
     const sent = await get(r(`likes/${uid}`));
     const sentBox = $("#admin-sent-list"); sentBox.innerHTML="";
     if(sent.exists()){
@@ -1120,7 +1379,6 @@
       sentBox.innerHTML = `<div class="muted small">보낸 LIKE 없음</div>`;
     }
 
-    // 받은 LIKE (likesReceived 인덱스)
     const recv = await get(r(`likesReceived/${uid}`));
     const recvBox = $("#admin-recv-list"); recvBox.innerHTML="";
     if(recv.exists()){
@@ -1134,26 +1392,24 @@
       recvBox.innerHTML = `<div class="muted small">받은 LIKE 없음</div>`;
     }
 
-    // 빠른 삭제 버튼에 대상 uid 기억
     $("#admin-wipe-user").dataset.uid = uid;
   };
 
   $("#admin-like-limit-dec").onclick = ()=>{
-    const inp = $("#admin-like-limit"); let v = parseInt(inp.value||"7",10); v = isNaN(v)?7:Math.max(0, v-1); inp.value = v;
+    const inp = $("#admin-like-limit"); let v = parseInt(inp.value||"5",10); v = isNaN(v)?5:Math.max(0, v-1); inp.value = v;
   };
   $("#admin-like-limit-inc").onclick = ()=>{
-    const inp = $("#admin-like-limit"); let v = parseInt(inp.value||"7",10); v = isNaN(v)?7:v+1; inp.value = v;
+    const inp = $("#admin-like-limit"); let v = parseInt(inp.value||"5",10); v = isNaN(v)?5:v+1; inp.value = v;
   };
   $("#admin-like-limit-save").onclick = async ()=>{
     const uid = $("#admin-search-uid").value.trim();
-    const v = parseInt($("#admin-like-limit").value||"7",10);
+    const v = parseInt($("#admin-like-limit").value||"5",10);
     if(!uid || !/^\d+$/.test(uid)) return alertModal("먼저 사용자 번호를 조회하세요.");
     if(isNaN(v) || v<0) return alertModal("LIKE 제한은 0 이상의 숫자여야 합니다.");
     await update(r(`users/${uid}`), { likeLimit: v });
     alertModal("LIKE 제한이 저장되었습니다.");
   };
 
-  // 검색 탭에서 “이 사용자 데이터 전부 삭제”
   $("#admin-wipe-user").onclick = async ()=>{
     const uid = $("#admin-wipe-user").dataset.uid || $("#admin-search-uid").value.trim();
     if(!uid) return alertModal("먼저 사용자 번호를 조회하세요.");
@@ -1166,9 +1422,10 @@
         remove(r(`likes/${uid}`)),
         remove(r(`likesReceived/${uid}`)),
         remove(r(`matches/${uid}`)),
-        remove(r(`meetingRequests/${uid}`))
+        remove(r(`meetingRequests/${uid}`)),
+        remove(r(`messageCounts/${uid}`)),
+        remove(r(`messagesUnread/${uid}`))
       ];
-      // 양방향 정리
       const likesAll = await get(r(`likes`));
       if(likesAll.exists()){
         const all = likesAll.val();
@@ -1193,6 +1450,9 @@
         others.forEach(other=>{
           ops.push(remove(r(`matches/${uid}/${other}`)));
           ops.push(remove(r(`matches/${other}/${uid}`)));
+          ops.push(remove(r(`messages/${pairKey(uid,other)}`)));
+          ops.push(remove(r(`messageCounts/${other}/${uid}`)));
+          ops.push(remove(r(`messagesUnread/${other}/${uid}`)));
         });
       }
       const reqAll = await get(r(`meetingRequests`));
@@ -1208,12 +1468,9 @@
     });
 
     await alertModal("해당 사용자의 데이터가 삭제되었습니다.");
-    // 화면 갱신
-    $("#admin-sent-list").innerHTML=""; $("#admin-recv-list").innerHTML="";
-    $("#admin-user-summary").textContent = "삭제 완료";
+    renderAdminMatches();
   };
 
-  // --- 관리자: 매치/만남 목록 분리 ---
   async function renderAdminMatches(){
     const boxMatch = $("#admin-matches"); boxMatch.innerHTML = "";
     const boxMeet  = $("#admin-meetings"); boxMeet.innerHTML = "";
@@ -1262,7 +1519,6 @@
     $("#admin-meet-count").textContent  = String(countMeet);
   }
 
-  // --- 관리자: 랜덤 번호 뽑기 ---
   async function getAllRegisteredIds(){
     const snap = await get(r("users"));
     if(!snap.exists()) return [];
@@ -1302,101 +1558,8 @@
     renderDrawState();
   };
 
-  // --- 관리자: 패널 하단 공용 삭제 버튼들 ---
-  $("#admin-del-user").onclick = async ()=>{
-    const uid = $("#admin-del-uid").value.trim();
-    if(!uid) return alertModal("삭제할 고유번호를 입력하세요.");
-    const ok = await confirmModal(`${uid}번 사용자의 모든 데이터를 삭제합니다.\n\n계속할까요?`,{okText:"삭제"});
-    if(!ok) return;
-
-    await withLoading(async ()=>{
-      const ops = [
-        remove(r(`users/${uid}`)),
-        remove(r(`likes/${uid}`)),
-        remove(r(`likesReceived/${uid}`)),
-        remove(r(`matches/${uid}`)),
-        remove(r(`meetingRequests/${uid}`))
-      ];
-      // 반대편 정리
-      const likesAll = await get(r(`likes`));
-      if(likesAll.exists()){
-        const all = likesAll.val();
-        for(const from of Object.keys(all)){
-          if(all[from] && all[from][uid]) ops.push(remove(r(`likes/${from}/${uid}`)));
-        }
-      }
-      const recvAll = await get(r(`likesReceived`));
-      if(recvAll.exists()){
-        const all = recvAll.val();
-        for(const to of Object.keys(all)){
-          if(all[to] && all[to][uid]) ops.push(remove(r(`likesReceived/${to}/${uid}`)));
-        }
-      }
-      const mAll = await get(r(`matches/${uid}`));
-      if(mAll.exists()){
-        const others = Object.keys(mAll.val());
-        others.forEach(other=>{
-          ops.push(remove(r(`matches/${uid}/${other}`)));
-          ops.push(remove(r(`matches/${other}/${uid}`)));
-        });
-      }
-      const reqAll = await get(r(`meetingRequests`));
-      if(reqAll.exists()){
-        const all = reqAll.val();
-        for(const target of Object.keys(all)){
-          if(all[target] && all[target][uid]){
-            ops.push(remove(r(`meetingRequests/${target}/${uid}`)));
-          }
-        }
-      }
-      await Promise.all(ops);
-    });
-
-    await alertModal("해당 사용자의 데이터가 삭제되었습니다.");
-    renderAdminMatches();
-  };
-
-  $("#admin-reset").onclick = async ()=>{
-    const ok = await confirmModal("이 이벤트의 모든 계정과 데이터를\n완전히 삭제합니다.\n\n되돌릴 수 없습니다.", { okText:"초기화", cancelText:"취소", title:"전체 초기화" });
-    if(!ok) return;
-    await withLoading(async ()=>{
-      await remove(r(`users`));
-      await remove(r(`likes`));
-      await remove(r(`likesReceived`));
-      await remove(r(`matches`));
-      await remove(r(`meetingRequests`));
-      await remove(r(`adminDraw`));
-    });
-    await alertModal("전체 데이터 초기화가 완료되었습니다.");
-    renderAdminMatches();
-  };
-
-  // ===================== 페이지 전환 =====================
-  function go(id){
-    Object.values(pages).forEach(hide);
-    show(pages[id]);
-    updateConnectionLabels();
-  }
-
   // ======== 시작 페이지 ========
   go("welcome");
 </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
