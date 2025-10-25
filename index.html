@@ -828,7 +828,7 @@
       const payload = {status:"matched", updatedAt: Date.now()};
       await update(r(`matches/${currentUid}/${toId}`), payload);
       await update(r(`matches/${toId}/${currentUid}`), payload);
-      await alertModal(`${toId}번 사용자와 MATCH가 되었습니다!\n\n매치 현황을 확인해 주시기 바랍니다.`);
+      await alertModal(`${toId}번 사용자와 MATCH가 되었습니다!\n⭐⭐⭐\n매치 현황을 확인해 주시기 바랍니다.`);
     }else{
       await alertModal("LIKE가 전송되었습니다.");
     }
@@ -949,7 +949,7 @@
             await update(r(`matches/${fromUid}/${currentUid}`), {status:"meeting_accepted", updatedAt: Date.now()});
             await remove(r(`meetingRequests/${currentUid}/${fromUid}`));
           });
-          await alertModal("만남이 성사되었습니다.\n\n지금바로 만남을 위해<br>직원에게 문의하세요!");
+          await alertModal("만남이 성사되었습니다.\n👉💛👈\n지금바로 만남을 위해<br>직원에게 문의하세요!");
           loadMatches();
         };
       });
@@ -996,7 +996,7 @@
           alertModal(`${other}번 사용자와<br>MATCH가 되었습니다!\n\n매치 현황을 확인해 주시기 바랍니다.`);
         }
         if(m && m.status==="meeting_accepted" && (Date.now()-m.updatedAt)<4000){
-          alertModal("만남이 성사되었습니다.\n\n지금바로 만남을 위해 직원에게 문의하세요!");
+          alertModal("만남이 성사되었습니다.\n👉💛👈\n지금바로 만남을 위해 직원에게 문의하세요!");
         }
       });
       if(!pages.matches.classList.contains("hidden")) loadMatches();
@@ -1015,7 +1015,7 @@
             await update(r(`matches/${currentUid}/${fromUid}`), {status:"meeting_accepted", updatedAt: Date.now()});
             await update(r(`matches/${fromUid}/${currentUid}`), {status:"meeting_accepted", updatedAt: Date.now()});
             await remove(r(`meetingRequests/${currentUid}/${fromUid}`));
-            await alertModal("만남이 성사되었습니다.\n\n지금바로 만남을 위해<br>직원에게 문의하세요!");
+            await alertModal("만남이 성사되었습니다.\n👉💛👈\n지금바로 만남을 위해<br>직원에게 문의하세요!");
           }else if(accepted===false){
             await clearPairData(currentUid, fromUid);
           }else{
@@ -1383,6 +1383,7 @@
 </script>
 </body>
 </html>
+
 
 
 
