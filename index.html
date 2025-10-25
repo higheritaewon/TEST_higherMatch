@@ -1357,7 +1357,7 @@
   };
 
   $("#admin-reset").onclick = async ()=>{
-    const ok = await confirmModal("이 이벤트의 모든 계정과 데이터를 완전히 삭제합니다.\n\n되돌릴 수 없습니다.", { okText:"초기화", cancelText:"취소", title:"전체 초기화" });
+    const ok = await confirmModal("이 이벤트의 모든 계정과 데이터를<br>완전히 삭제합니다.\n\n되돌릴 수 없습니다.", { okText:"초기화", cancelText:"취소", title:"전체 초기화" });
     if(!ok) return;
     await withLoading(async ()=>{
       await remove(r(`users`));
@@ -1383,6 +1383,7 @@
 </script>
 </body>
 </html>
+
 
 
 
