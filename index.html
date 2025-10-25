@@ -416,7 +416,7 @@
     <!-- 랜덤 번호 뽑기 -->
     <div id="admin-panel-draw" class="hidden" style="margin-top:12px;">
       <h3>랜덤 번호 뽑기</h3>
-      <p class="small muted">현재 등록된 번호들 중에서 중복 없이 각각의 풀에서 추첨됩니다.</p>
+      <p class="small muted">현재 등록된 번호들 중에서 중복 없이 추첨됩니다.</p>
       <div class="row" style="margin-top:8px;">
         <button id="draw-host" class="btn-primary">🎤 진행자용<br>랜덤번호 뽑기</button>
         <button id="draw-guest" class="btn-primary">🎉 참가자용<br>랜덤번호 뽑기</button>
@@ -1357,7 +1357,7 @@
   };
 
   $("#admin-reset").onclick = async ()=>{
-    const ok = await confirmModal("이 이벤트의 모든 계정과 데이터를<br>완전히 삭제합니다.\n\n되돌릴 수 없습니다.", { okText:"초기화", cancelText:"취소", title:"전체 초기화" });
+    const ok = await confirmModal("이 이벤트의 모든 계정과 데이터를\n완전히 삭제합니다.\n\n되돌릴 수 없습니다.", { okText:"초기화", cancelText:"취소", title:"전체 초기화" });
     if(!ok) return;
     await withLoading(async ()=>{
       await remove(r(`users`));
@@ -1383,6 +1383,7 @@
 </script>
 </body>
 </html>
+
 
 
 
