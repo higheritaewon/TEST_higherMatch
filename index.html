@@ -845,7 +845,7 @@
     for(const from of Object.keys(recvs)){
       const v = recvs[from];
       if(v && v.ok && v.seen===false){
-        await alertModal("누군가에게 LIKE를 받았습니다.", "LIKE 알림");
+        await alertModal("누군가에게 LIKE를 받았습니다.", "❤️LIKE 알림❤️");
         await update(r(`likesReceived/${currentUid}/${from}`), { seen:true });
       }
     }
@@ -1383,6 +1383,7 @@
 </script>
 </body>
 </html>
+
 
 
 
