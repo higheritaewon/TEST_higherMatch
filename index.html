@@ -22,7 +22,7 @@
     margin:0; background:linear-gradient(180deg,var(--bg),#0a142e 55%,#08102a);
     color:var(--text);
     font-family:system-ui,-apple-system,Segoe UI,Roboto,Pretendard,Apple SD Gothic Neo,Helvetica,Arial,sans-serif;
-    font-size:17px; /* 📈 기본 폰트 약 +1~2pt */
+    font-size:18px; /* 📈 기본 폰트 약 +1~2pt */
     line-height:1.45;
   }
   .container{max-width:480px;margin:0 auto;padding:16px 14px 28px}
@@ -44,7 +44,7 @@
     margin-bottom:8px;
     font-family: 'Do Hyeon', sans-serif;
   }
-  .subtitle{color:var(--muted); font-size:14px; /* 📈 */ text-align:center; margin-top:-6px; margin-bottom:14px}
+  .subtitle{color:var(--muted); font-size:18px; /* 📈 */ text-align:center; margin-top:-6px; margin-bottom:14px}
 
   .logo-wrap{display:flex;flex-direction:column;align-items:center;gap:10px;margin:8px 0 16px}
   .logo{
@@ -72,7 +72,7 @@
   .btn-success{background:var(--success); color:#0e2824}
   .badge{
     display:inline-block; padding:2px 8px; border:1px solid rgba(255,255,255,.15);
-    border-radius:999px; font-size:13px; /* 📈 */
+    border-radius:999px; font-size:18px; /* 📈 */
     background:#0e1f4a;
   }
 
@@ -87,18 +87,34 @@
   .tile.like{background:#14265a; border:1px solid #29418d; box-shadow:0 0 0 2px rgba(41,65,141,.25) inset}
   .tile.like strong{ color: var(--yellow); }
 
-  .muted{color:var(--muted); font-size:14px} /* 📈 */
-  .small{font-size:13px} /* 📈 */
+  .muted{color:var(--muted); font-size:16px} /* 📈 */
+  .small{font-size:14px} /* 📈 */
   .center{text-align:center}
   .spacer{height:8px}
   .footerbar{
-    margin-top:16px; display:flex; align-items:center; justify-content:space-between; gap:10px; color:var(--muted); font-size:13px /* 📈 */
+    margin-top:16px; display:flex; align-items:center; justify-content:space-between; gap:10px; color:var(--muted); font-size:14px /* 📈 */
   }
   .list{display:flex;flex-direction:column; gap:10px}
   .list-item{
     display:flex; align-items:center; gap:10px;
     padding:12px; border-radius:12px; background:#0d1a3e; border:1px solid rgba(255,255,255,.06)
   }
+  .search-row {
+  display: flex;
+  gap: 8px;            
+  align-items: center;   
+}
+
+.search-row input {
+  flex: 1;              
+}
+
+.search-row button {
+  flex-shrink: 0;       
+  white-space: nowrap;   
+  padding: 12px 14px;  
+}
+  
   .hidden{display:none !important}
 
   .li-content{ flex: 2; min-width:0; }
@@ -117,7 +133,8 @@
   .modal h3{margin:0 0 10px; font-size:1.2em;} /* 제목도 큼직하게 */
   .modal .actions{display:flex; gap:12px; margin-top:14px}
    #modal-title, #modal-message { text-align: center; }
-  
+   #modal-message {
+     font-size: 18px; line-height: 1.5;}
   /* ===== 로딩 오버레이 ===== */
   .loading-backdrop{
     position:fixed; inset:0; background:rgba(0,0,0,.35);
@@ -144,11 +161,11 @@
     text-align:center;
   }
   .counter-banner .num{
-    font-size:26px; /* 📈 */
+    font-size:28px; /* 📈 */
     font-weight:800; letter-spacing:.5px;
     font-family:'Do Hyeon', sans-serif;
   }
-  .counter-banner .cap{display:block; margin-top:6px; font-size:13px; color:var(--muted)}
+  .counter-banner .cap{display:block; margin-top:6px; font-size:16px; color:var(--muted)}
   .counter-banner.exhausted{background:#2a0e12; border-color:#3b1318}
 </style>
 </head>
@@ -326,7 +343,7 @@
     <div class="spacer"></div>
 
     <div class="row">
-      <input id="event-id-input" placeholder="이벤트 ID (예: 2025-10-05-night)" />
+      <input id="event-id-input" placeholder="이벤트 ID" />
       <button id="apply-event-id" class="btn">이벤트ID 적용</button>
     </div>
     <p class="small muted">현재 이벤트: <span class="badge" id="current-event"></span></p>
@@ -334,7 +351,7 @@
     <div class="row" style="margin-top:10px;">
       <button id="admin-tab-search" class="btn">사용자<br>검색/관리</button>
       <button id="admin-tab-matches" class="btn">매치/만남 목록</button>
-      <button id="admin-tab-draw" class="btn">랜덤 번호 뽑기</button>
+      <button id="admin-tab-draw" class="btn">랜덤<br>번호뽑기</button>
     </div>
 
     <!-- 사용자 검색/관리 -->
@@ -358,7 +375,7 @@
       <h4 style="margin-top:12px">받은 LIKE 목록</h4>
       <div id="admin-recv-list" class="list"></div>
 
-      <h4 style="margin-top:12px">데이터 제거(해당 사용자 전용)</h4>
+      <h4 style="margin-top:12px">특정 사용자 데이터 삭제)</h4>
       <div class="row">
         <button id="admin-wipe-user" class="btn-danger">이 사용자 데이터 전부 삭제</button>
       </div>
@@ -378,11 +395,11 @@
       <h4 style="margin-top:14px">개별 사용자 삭제</h4>
       <div class="row">
         <input id="admin-del-uid" placeholder="삭제할 번호" inputmode="numeric" pattern="[0-9]*" />
-        <button id="admin-del-user" class="btn-danger">해당 사용자<br>DATA 삭제</button>
+        <button id="admin-del-user" class="btn-danger">해당 사용자<br>데이터 삭제</button>
       </div>
 
       <h4 style="margin-top:14px">이벤트 전체 초기화</h4>
-      <button id="admin-reset" class="btn-danger">모든 계정/DATA 완전 삭제</button>
+      <button id="admin-reset" class="btn-danger">모든 계정/데이터 완전 삭제</button>
     </div>
 
     <!-- 랜덤 번호 뽑기 -->
@@ -1355,5 +1372,6 @@
 </script>
 </body>
 </html>
+
 
 
